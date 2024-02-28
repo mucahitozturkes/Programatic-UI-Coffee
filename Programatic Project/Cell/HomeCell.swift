@@ -7,15 +7,12 @@
 
 import UIKit
 
-struct List: Codable {
-    var test: String
-}
-
 class HomeCell: UITableViewCell {
 
     static let reuseID = "HomeCell"
     
     var testLabel = GFTitleLabel(textAlignment: .left, fontSize: 20)
+    var testImage = GFImageView(frame: .zero)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -30,20 +27,26 @@ class HomeCell: UITableViewCell {
     
     
     func set(list: List) {
-        testLabel.text = list.test
+        testLabel.text  = list.test
+        testImage.image = UIImage(systemName: "person")
     }
     
     
     private func configure() {
         addSubview(testLabel)
+        addSubview(testImage)
        
-        let padding: CGFloat = 32
+        let padding: CGFloat = 12
                
         NSLayoutConstraint.activate([
             testLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            testLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            testLabel.heightAnchor.constraint(equalToConstant: 60)
+            testLabel.leadingAnchor.constraint(equalTo: testImage.trailingAnchor, constant: padding),
+            testLabel.heightAnchor.constraint(equalToConstant: 60),
             
+            testImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            testImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            testImage.heightAnchor.constraint(equalToConstant: 40),
+            testImage.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
     

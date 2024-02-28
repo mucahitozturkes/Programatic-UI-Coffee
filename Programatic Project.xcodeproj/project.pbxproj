@@ -14,6 +14,8 @@
 		08EC99662B8F87250082BEF5 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99652B8F87250082BEF5 /* HomeVC.swift */; };
 		08EC99682B8F98080082BEF5 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99672B8F98080082BEF5 /* HomeCell.swift */; };
 		08EC996A2B8F9FA90082BEF5 /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99692B8F9FA90082BEF5 /* GFTitleLabel.swift */; };
+		08EC996E2B8FAAE80082BEF5 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC996D2B8FAAE80082BEF5 /* List.swift */; };
+		08EC99712B8FB43B0082BEF5 /* GFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99702B8FB43A0082BEF5 /* GFImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		08EC99652B8F87250082BEF5 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		08EC99672B8F98080082BEF5 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		08EC99692B8F9FA90082BEF5 /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
+		08EC996D2B8FAAE80082BEF5 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		08EC99702B8FB43A0082BEF5 /* GFImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +62,58 @@
 		08EC99502B8F86090082BEF5 /* Programatic Project */ = {
 			isa = PBXGroup;
 			children = (
-				08EC99512B8F86090082BEF5 /* AppDelegate.swift */,
-				08EC99532B8F86090082BEF5 /* SceneDelegate.swift */,
-				08EC99652B8F87250082BEF5 /* HomeVC.swift */,
-				08EC99672B8F98080082BEF5 /* HomeCell.swift */,
-				08EC99692B8F9FA90082BEF5 /* GFTitleLabel.swift */,
-				08EC995A2B8F860A0082BEF5 /* Assets.xcassets */,
-				08EC995C2B8F860A0082BEF5 /* LaunchScreen.storyboard */,
+				08EC99732B8FBDED0082BEF5 /* Support */,
+				08EC996F2B8FAAF70082BEF5 /* Model */,
+				08EC996C2B8FAA7F0082BEF5 /* GF  */,
+				08EC996B2B8FAA750082BEF5 /* Cell */,
+				08EC99722B8FB91A0082BEF5 /* Screens */,
 				08EC995F2B8F860A0082BEF5 /* Info.plist */,
 			);
 			path = "Programatic Project";
+			sourceTree = "<group>";
+		};
+		08EC996B2B8FAA750082BEF5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				08EC99672B8F98080082BEF5 /* HomeCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		08EC996C2B8FAA7F0082BEF5 /* GF  */ = {
+			isa = PBXGroup;
+			children = (
+				08EC99692B8F9FA90082BEF5 /* GFTitleLabel.swift */,
+				08EC99702B8FB43A0082BEF5 /* GFImage.swift */,
+			);
+			path = "GF ";
+			sourceTree = "<group>";
+		};
+		08EC996F2B8FAAF70082BEF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				08EC996D2B8FAAE80082BEF5 /* List.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		08EC99722B8FB91A0082BEF5 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				08EC99652B8F87250082BEF5 /* HomeVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		08EC99732B8FBDED0082BEF5 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				08EC99512B8F86090082BEF5 /* AppDelegate.swift */,
+				08EC99532B8F86090082BEF5 /* SceneDelegate.swift */,
+				08EC995C2B8F860A0082BEF5 /* LaunchScreen.storyboard */,
+				08EC995A2B8F860A0082BEF5 /* Assets.xcassets */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +187,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				08EC99662B8F87250082BEF5 /* HomeVC.swift in Sources */,
+				08EC99712B8FB43B0082BEF5 /* GFImage.swift in Sources */,
 				08EC99522B8F86090082BEF5 /* AppDelegate.swift in Sources */,
 				08EC99682B8F98080082BEF5 /* HomeCell.swift in Sources */,
 				08EC996A2B8F9FA90082BEF5 /* GFTitleLabel.swift in Sources */,
 				08EC99542B8F86090082BEF5 /* SceneDelegate.swift in Sources */,
+				08EC996E2B8FAAE80082BEF5 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
