@@ -6,7 +6,3 @@
 //
 
 import Foundation
-
-struct List: Codable {
-    var test: String
-}

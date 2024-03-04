@@ -1,13 +1,13 @@
 //
-//  GFTitleLabel.swift
-//  Programatic Project
+//  GFSecondaryTitleLabel.swift
+//  none-storyboard
 //
-//  Created by mücahit öztürk on 28.02.2024.
+//  Created by mücahit öztürk on 27.02.2024.
 //
 
 import UIKit
 
-class GFTitleLabel: UILabel {
+class GFSecondaryTitleLabel: UILabel {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,22 +20,18 @@ class GFTitleLabel: UILabel {
     }
     
     
-    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat, textColor: UIColor) {
+    convenience init(fontSize: CGFloat) {
         self.init(frame: .zero)
-        self.textAlignment = textAlignment
-        self.font          = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        self.textColor     = textColor
-         
+        font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
     }
-    
+  
     
     private func configure() {
-        textColor                   = .white
+        textColor                   = .secondaryLabel
         adjustsFontSizeToFitWidth   = true
         minimumScaleFactor          = 0.9
         lineBreakMode               = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
-
     }
 
 }

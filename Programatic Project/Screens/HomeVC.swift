@@ -9,63 +9,80 @@ import UIKit
 
 class HomeVC: UIViewController {
     
-    var tableView = UITableView()
-    var test: [List] = []
+    var viewHome    = GFView()
+    var tableView   = UITableView()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        populateTestArray()
-        
-        view.backgroundColor = .systemBackground
+        configureViewHome()
+        configureView()
+       
     }
     
     
     func configureTableView() {
-        view.addSubview(tableView)
+        viewHome.addSubview(tableView)
         tableView.delegate                     = self
         tableView.dataSource                   = self
-        tableView.rowHeight                    = 60
-        tableView.frame                        = view.bounds
         tableView.separatorStyle               = .none
         tableView.showsVerticalScrollIndicator = false
       
-        tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reuseID)
+        tableView.register(HomeCell1.self, forCellReuseIdentifier: HomeCell1.reuseID)
+        tableView.register(HomeCell2.self, forCellReuseIdentifier: HomeCell2.reuseID)
+        tableView.register(HomeCell3.self, forCellReuseIdentifier: HomeCell3.reuseID)
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: viewHome.topAnchor),
+                tableView.leadingAnchor.constraint(equalTo: viewHome.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: viewHome.trailingAnchor),
+                tableView.bottomAnchor.constraint(equalTo: viewHome.bottomAnchor)
+            ])
     }
     
     
-    func populateTestArray() {
-        for _ in 1...5 {
-            let example = List(test: "test")
-            test.append(example)
-        }
+    func configureView() {
+        view.backgroundColor = .systemBackground
+    }
+    
+  
+    func configureViewHome() {
+        view.addSubview(viewHome)
+
+        NSLayoutConstraint.activate([
+            viewHome.topAnchor.constraint(equalTo: self.view.topAnchor),
+            viewHome.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewHome.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewHome.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -85)
+        ])
     }
 }
 
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+}
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test.count
+       return 1
     }
-    
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseID, for: indexPath) as! HomeCell
-        let index = test[indexPath.row]
-        
-        cell.set(list: index)
-        
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell1.reuseID, for: indexPath)
+     
         return cell
     }
     
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        
-        let _ = test[indexPath.row]
-        test.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .left)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 350
     }
+
 }

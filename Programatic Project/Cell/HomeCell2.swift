@@ -1,23 +1,22 @@
 //
-//  HomeCell.swift
+//  HomeCell2.swift
 //  Programatic Project
 //
-//  Created by mücahit öztürk on 28.02.2024.
+//  Created by mücahit öztürk on 3.03.2024.
 //
 
 import UIKit
 
-class HomeCell: UITableViewCell {
-
-    static let reuseID = "HomeCell"
+class HomeCell2: UITableViewCell {
+    static let reuseID = "HomeCell2"
     
-    var testLabel = GFTitleLabel(textAlignment: .left, fontSize: 20)
+    var testLabel = GFTitleLabel(textAlignment: .left, fontSize: 20, textColor: .black)
     var testImage = GFImageView(frame: .zero)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configure()
+        configureSection1()
     }
     
     
@@ -26,16 +25,15 @@ class HomeCell: UITableViewCell {
     }
     
     
-    func set(list: List) {
-        testLabel.text  = list.test
-        testImage.image = UIImage(systemName: "person")
+    func set2(responseCell: String) {
+     
     }
     
     
-    private func configure() {
+    private func configureSection1() {
         addSubview(testLabel)
         addSubview(testImage)
-       
+        
         let padding: CGFloat = 12
                
         NSLayoutConstraint.activate([
@@ -49,5 +47,5 @@ class HomeCell: UITableViewCell {
             testImage.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
+
 }

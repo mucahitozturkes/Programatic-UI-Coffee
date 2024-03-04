@@ -17,10 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene    = windowScene
-        window?.rootViewController = HomeVC()
+        window?.windowScene        = windowScene
+        window?.rootViewController = EntryVC()
         window?.makeKeyAndVisible()
+        
+        
     }
+    
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
