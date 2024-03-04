@@ -19,6 +19,7 @@ class GFButtonLabel: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     convenience init(title: String, textColor: UIColor, fontSize: CGFloat, fontWeight: UIFont.Weight) {
         self.init(frame: .zero)
         self.setTitleColor(textColor, for: .normal)

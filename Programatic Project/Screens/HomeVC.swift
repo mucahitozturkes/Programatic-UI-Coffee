@@ -65,24 +65,56 @@ class HomeVC: UIViewController {
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-}
+        return 2
+    }
 
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 1
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 1
+        }
+        return 0
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell1.reuseID, for: indexPath)
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
      
+            return cell
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell2.reuseID, for: indexPath) as! HomeCell2
+       
+            return cell
+        }
+        return UITableViewCell()
+    }
+
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 300
+        } else if indexPath.section == 1 {
+            return 50
+        }
+        return UITableView.automaticDimension
+    }
+}
+
+
+extension HomeCellCV: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCellCV.reuseID, for: indexPath) as! HomeCellCV
+        
         return cell
     }
     
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350
-    }
-
 }

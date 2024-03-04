@@ -27,6 +27,7 @@
 		08EC998F2B9470080082BEF5 /* HomeCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC998E2B9470080082BEF5 /* HomeCell3.swift */; };
 		08EC99942B94BBC60082BEF5 /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99932B94BBC60082BEF5 /* GFTextField.swift */; };
 		08EC99962B95C02B0082BEF5 /* GFButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99952B95C02B0082BEF5 /* GFButtonLabel.swift */; };
+		08EC99982B95C54C0082BEF5 /* HomeCellCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99972B95C54C0082BEF5 /* HomeCellCV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		08EC998E2B9470080082BEF5 /* HomeCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell3.swift; sourceTree = "<group>"; };
 		08EC99932B94BBC60082BEF5 /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 		08EC99952B95C02B0082BEF5 /* GFButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButtonLabel.swift; sourceTree = "<group>"; };
+		08EC99972B95C54C0082BEF5 /* HomeCellCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellCV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			children = (
 				08EC99672B8F98080082BEF5 /* HomeCell1.swift */,
 				08EC998C2B946F960082BEF5 /* HomeCell2.swift */,
+				08EC99972B95C54C0082BEF5 /* HomeCellCV.swift */,
 				08EC998E2B9470080082BEF5 /* HomeCell3.swift */,
 			);
 			path = Cell;
@@ -265,6 +268,7 @@
 				08EC99802B91FE660082BEF5 /* GFView.swift in Sources */,
 				08EC996A2B8F9FA90082BEF5 /* GFTitleLabel.swift in Sources */,
 				08EC99542B8F86090082BEF5 /* SceneDelegate.swift in Sources */,
+				08EC99982B95C54C0082BEF5 /* HomeCellCV.swift in Sources */,
 				08EC99832B9218650082BEF5 /* GFTabBarController.swift in Sources */,
 				08EC99892B925F5D0082BEF5 /* GFLabelButton.swift in Sources */,
 				08EC998D2B946F960082BEF5 /* HomeCell2.swift in Sources */,
