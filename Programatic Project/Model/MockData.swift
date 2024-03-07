@@ -54,16 +54,15 @@ struct MockData {
         
     private let stories: ListSection = { .stories([
             .init(title: "Cappuccino"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test"),
-            .init(title: "test")
+            .init(title: "Americano"),
+            .init(title: "Cafe Latte"),
+            .init(title: "Caffee Macchiato"),
+            .init(title: "Mocha"),
+            .init(title: "Cappuccino"),
+            .init(title: "Americano"),
+            .init(title: "Cafe Latte"),
+            .init(title: "Caffee Macchiato"),
+            .init(title: "Mocha")
         ])}()
     
     private let product: ListSection = { .product([
@@ -78,7 +77,5 @@ struct MockData {
         .init(title: "Cappucino", image: "coffe1", price: 4.23, vote: 4.8, secondaryTitle: "with chocolate"),
         .init(title: "Cappucino", image: "coffe2", price: 3.90, vote: 4.5, secondaryTitle: "with Oat Milk"),
         .init(title: "Cappucino", image: "coffe3", price: 6.27, vote: 4.9, secondaryTitle: "with sugar"),
-        .init(title: "Cappucino", image: "coffe4", price: 9.22, vote: 4.7, secondaryTitle: "with dark sugar"),
- 
     ])}()
 }

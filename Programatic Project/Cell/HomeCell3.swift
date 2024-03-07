@@ -45,6 +45,7 @@ class HomeCell3: UICollectionViewCell {
     
     func configureCV() {
         addSubview(mainView)
+        
         mainView.addSubview(imageView)
         mainView.addSubview(imageViewStar)
         mainView.addSubview(textLabelNumbers)
@@ -60,15 +61,14 @@ class HomeCell3: UICollectionViewCell {
         mainView.layer.shadowOffset = CGSize(width: 0, height: 2)
         mainView.layer.shadowRadius = 5
         mainView.layer.masksToBounds = false
+      
+        textTitle.font          = UIFont.systemFont(ofSize: 18, weight: .medium)
+        secondaryLabel.font     = UIFont.systemFont(ofSize: 14.0, weight: .light)
         
-        secondaryLabel.font = UIFont.systemFont(ofSize: 14.0, weight: .light)
+        priceText.font          = UIFont.systemFont(ofSize: 18.0, weight: .medium)
         
-        priceText.font = UIFont.systemFont(ofSize: 18.0, weight: .medium)
-        
-        addButton.tintColor = UIColor.white
+        addButton.tintColor     = UIColor.white
      
-       
-       
         
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: topAnchor),

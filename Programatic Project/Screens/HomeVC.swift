@@ -21,7 +21,6 @@ class HomeVC: UIViewController {
     }
     
     
-    
     func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
               
@@ -60,10 +59,11 @@ class HomeVC: UIViewController {
                 
             case .stories:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(120), heightDimension: .absolute(40)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(140), heightDimension: .absolute(40)), subitems: [item])
+
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
-                section.interGroupSpacing = 10
+                section.interGroupSpacing = 18
                 section.contentInsets = .init(top: 16, leading: 24, bottom: 30, trailing: 0)
                 
                 return section
@@ -75,6 +75,7 @@ class HomeVC: UIViewController {
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(239))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
                 group.interItemSpacing = .fixed(16)
+                
                 let section = NSCollectionLayoutSection(group: group)
                 let contentInsets = (collectionView.bounds.width - (2 * 149 + 16)) / 2
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: contentInsets, bottom: 16, trailing: contentInsets)
@@ -92,9 +93,11 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         return pageData.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pageData[section].count
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch pageData[indexPath.section] {
@@ -114,6 +117,4 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
         }
     }
-    
- 
 }
