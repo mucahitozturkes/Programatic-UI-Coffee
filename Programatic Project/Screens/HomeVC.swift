@@ -9,112 +9,104 @@ import UIKit
 
 class HomeVC: UIViewController {
     
-    var viewHome    = GFView()
-    var tableView   = UITableView()
-    
+    var collectionView:  UICollectionView!
 
+    private let pageData = MockData.shared.pageData
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
-        configureViewHome()
-        configureView()
-       
+        configureCollectionView()
+       title = "Collection View"
+        view.backgroundColor = .red
     }
     
     
-    func configureTableView() {
-        viewHome.addSubview(tableView)
-        tableView.delegate                     = self
-        tableView.dataSource                   = self
-        tableView.separatorStyle               = .none
-        tableView.showsVerticalScrollIndicator = false
-      
-        tableView.register(HomeCell1.self, forCellReuseIdentifier: HomeCell1.reuseID)
-        tableView.register(HomeCell2.self, forCellReuseIdentifier: HomeCell2.reuseID)
-        tableView.register(HomeCell3.self, forCellReuseIdentifier: HomeCell3.reuseID)
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-            NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: viewHome.topAnchor),
-                tableView.leadingAnchor.constraint(equalTo: viewHome.leadingAnchor),
-                tableView.trailingAnchor.constraint(equalTo: viewHome.trailingAnchor),
-                tableView.bottomAnchor.constraint(equalTo: viewHome.bottomAnchor)
-            ])
-    }
     
-    
-    func configureView() {
-        view.backgroundColor = .systemBackground
-    }
-    
+    func configureCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+              
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .systemBackground
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+        collectionView.register(HomeCell1.self, forCellWithReuseIdentifier: HomeCell1.reuseID)
+        collectionView.register(HomeCell2.self, forCellWithReuseIdentifier: HomeCell2.reuseID)
+        collectionView.register(HomeCell1.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeCell1.reuseID)
+
   
-    func configureViewHome() {
-        view.addSubview(viewHome)
 
-        NSLayoutConstraint.activate([
-            viewHome.topAnchor.constraint(equalTo: self.view.topAnchor),
-            viewHome.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            viewHome.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            viewHome.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -85)
-        ])
+        view.addSubview(collectionView)
+        collectionView.collectionViewLayout = createLayout()
+        
     }
+    
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
+            guard let self = self else { return nil }
+            
+            let section = self.pageData[sectionIndex]
+            
+            switch section {
+           
+            case .stories:
+                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(120), heightDimension: .absolute(40)), subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .continuous
+                section.interGroupSpacing = 10
+                section.contentInsets = .init(top: 16, leading: 0, bottom: 30, trailing: 0)
+                section.boundarySupplementaryItems = [supplementaryHeaderItem()]
+                return section
+            }
+        }
+    }
+    
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+    }
+
 }
 
-
-extension HomeVC: UITableViewDelegate, UITableViewDataSource {
+extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return pageData.count
     }
-
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else if section == 1 {
-            return 1
-        }
-        return 0
-    }
-
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
-     
-            return cell
-        } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell2.reuseID, for: indexPath) as! HomeCell2
-       
-            return cell
-        }
-        return UITableViewCell()
-    }
-
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 300
-        } else if indexPath.section == 1 {
-            return 50
-        }
-        return UITableView.automaticDimension
-    }
-}
-
-
-extension HomeCellCV: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return pageData[section].count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCellCV.reuseID, for: indexPath) as! HomeCellCV
-        
-        return cell
+        switch pageData[indexPath.section] {
+//        case .home(let items):
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
+//          
+ //           return cell
+        case .stories(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell2.reuseID, for: indexPath) as! HomeCell2
+            cell.setup(items[indexPath.row])
+            return cell
+//        case .sellers(let items):
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell3.reuseID, for: indexPath) as! HomeCell3
+//           
+//            return cell
+        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
+            
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
     
 }

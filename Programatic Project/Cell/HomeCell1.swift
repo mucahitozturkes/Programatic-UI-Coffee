@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeCell1: UITableViewCell {
+class HomeCell1: UICollectionViewCell {
 
     static let reuseID = "HomeCell1"
     
@@ -16,19 +16,18 @@ class HomeCell1: UITableViewCell {
     var secondaryView       = GFImageView(frame: .zero)
     var profileImageView    = GFImageView(frame: .zero)
     var searchBarTextField  = GFTextField()
-    var filterButton        = GFLabelButton(backgroundColor: .brown, title: "")
+    var filterButton        = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor")!, title: "")
     var locationLabel       = GFTitleLabel(textAlignment: .left, fontSize: 14, textColor: .white)
     var locationButton      = GFButtonLabel(title: "Bilzen, Tanjungbalai", textColor: .white, fontSize: 14, fontWeight: .medium)
     var promoViewButton     = GFLabelButton(backgroundColor: .systemRed, title: "Promo")
     var titleLabelInfo      = GFTitleLabel(textAlignment: .left, fontSize: 32, textColor: .white)
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureMainView()
         configureBlackView()
         configureProfileView()
         configureSearchBar()
-       
         configuresecondaryView()
         configureLabel()
         configureLocationButton()
@@ -56,7 +55,7 @@ class HomeCell1: UITableViewCell {
             MainView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             MainView.widthAnchor.constraint(equalToConstant: 315),
-            MainView.heightAnchor.constraint(equalToConstant: 350)
+            MainView.heightAnchor.constraint(equalToConstant: 300)
          
         ])
     }
@@ -132,10 +131,10 @@ class HomeCell1: UITableViewCell {
     private func configureSearchBar() {
         addSubview(searchBarTextField)
         searchBarTextField.addSubview(filterButton)
-
-        let placeholderLabel = UILabel()
-        placeholderLabel.text = "Search coffee"
-        placeholderLabel.textColor = .white
+        
+        let placeholderLabel        = UILabel()
+        placeholderLabel.text       = "Search coffee"
+        placeholderLabel.textColor  = .white
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
         searchBarTextField.addSubview(placeholderLabel)
 
@@ -158,7 +157,7 @@ class HomeCell1: UITableViewCell {
         searchImageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            searchBarTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -160),
+            searchBarTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -165),
             searchBarTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
             searchBarTextField.heightAnchor.constraint(equalToConstant: 52),
             searchBarTextField.widthAnchor.constraint(equalToConstant: 315),

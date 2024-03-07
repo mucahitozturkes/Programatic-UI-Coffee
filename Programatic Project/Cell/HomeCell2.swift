@@ -7,23 +7,63 @@
 
 import UIKit
 
-class HomeCell2: UITableViewCell {
+class HomeCell2: UICollectionViewCell {
     
     static let reuseID = "HomeCell2"
       
-    var collectionView: UICollectionView!
+    let titleLabel  = UILabel()
+    let textView    = UIView()
    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
- 
-        let layout = UICollectionViewFlowLayout()
-        collectionView = UICollectionView(frame: bounds, collectionViewLayout: layout)
-        addSubview(collectionView)
-  
-        collectionView.register(HomeCellCV.self, forCellWithReuseIdentifier: HomeCellCV.reuseID)
+   
+   
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureCV()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    func setup(_ item: ListItem) {
+        titleLabel.text             = item.title
+    }
+    
+    
+    func configureCV() {
+        textView.addSubview(titleLabel)
+        addSubview(textView)
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.textAlignment    = .center
+        titleLabel.textColor        = .white
+        titleLabel.font             = UIFont.boldSystemFont(ofSize: 16)
+       
+        textView.backgroundColor = UIColor(named: "titleCell")
+        textView.layer.cornerRadius = 8
+        
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: topAnchor),
+            textView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            textView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            textView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+      }
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        textView.layer.cornerRadius = 12
+        textView.layoutIfNeeded()
+    }
 }
+
+
