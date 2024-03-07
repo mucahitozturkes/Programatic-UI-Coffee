@@ -15,12 +15,16 @@ struct ListItem {
 
 
 enum ListSection {
+    case headers([ListItem])
     case stories([ListItem])
+   
     
     var items: [ListItem] {
         switch self {
             case
-                .stories(let items):
+                .stories(let items),
+                .headers(let items):
+                
             return items
         }
     }
@@ -33,8 +37,16 @@ struct MockData {
     
     static let shared = MockData()
     
-    var pageData: [ListSection] { [stories] }
+    var pageData: [ListSection] { [headers, stories] }
     
+    
+    private let headers: ListSection = {
+        .headers([
+            .init(title: "Buy one get\none FREE", image: ""),
+       
+        ]) }()
+       
+        
     private let stories: ListSection = {
         .stories([
             .init(title: "Cappuccino", image: ""),
@@ -51,4 +63,7 @@ struct MockData {
         ])
         
     }()
+    
+   
+   
 }

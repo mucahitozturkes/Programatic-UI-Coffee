@@ -33,10 +33,7 @@ class HomeVC: UIViewController {
 
         collectionView.register(HomeCell1.self, forCellWithReuseIdentifier: HomeCell1.reuseID)
         collectionView.register(HomeCell2.self, forCellWithReuseIdentifier: HomeCell2.reuseID)
-        collectionView.register(HomeCell1.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeCell1.reuseID)
-
-  
-
+     
         view.addSubview(collectionView)
         collectionView.collectionViewLayout = createLayout()
         
@@ -50,25 +47,29 @@ class HomeVC: UIViewController {
             let section = self.pageData[sectionIndex]
             
             switch section {
-           
+            case .headers:
+                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.322)), subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .none
+                section.interGroupSpacing = 10
+              
+                return section
             case .stories:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(120), heightDimension: .absolute(40)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 10
-                section.contentInsets = .init(top: 16, leading: 0, bottom: 30, trailing: 0)
-                section.boundarySupplementaryItems = [supplementaryHeaderItem()]
+                section.contentInsets = .init(top: 16, leading: 24, bottom: 30, trailing: 0)
                 return section
+            
             }
         }
     }
     
     
-    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-    }
-
+  
 }
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -83,10 +84,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch pageData[indexPath.section] {
-//        case .home(let items):
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
-//          
- //           return cell
+        case .headers(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
+           
+            return cell
         case .stories(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell2.reuseID, for: indexPath) as! HomeCell2
             cell.setup(items[indexPath.row])
@@ -98,15 +99,5 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
-            
-            return header
-        default:
-            return UICollectionReusableView()
-        }
-    }
-    
+ 
 }

@@ -39,11 +39,6 @@ class HomeCell1: UICollectionViewCell {
     }
     
     
-    func set1(responseCell: String) {
-      
-    }
-    
-    
     private func configureMainView() {
         addSubview(MainView)
         
