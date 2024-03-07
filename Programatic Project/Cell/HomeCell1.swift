@@ -16,10 +16,10 @@ class HomeCell1: UICollectionViewCell {
     var secondaryView       = GFImageView(frame: .zero)
     var profileImageView    = GFImageView(frame: .zero)
     var searchBarTextField  = GFTextField()
-    var filterButton        = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor")!, title: "")
+    var filterButton        = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor")!, title: "", cornerR: 16)
     var locationLabel       = GFTitleLabel(textAlignment: .left, fontSize: 14, textColor: .white)
     var locationButton      = GFButtonLabel(title: "Bilzen, Tanjungbalai", textColor: .white, fontSize: 14, fontWeight: .medium)
-    var promoViewButton     = GFLabelButton(backgroundColor: .systemRed, title: "Promo")
+    var promoViewButton     = GFLabelButton(backgroundColor: .systemRed, title: "Promo", cornerR: 16)
     var titleLabelInfo      = GFTitleLabel(textAlignment: .left, fontSize: 32, textColor: .white)
     
     override init(frame: CGRect) {

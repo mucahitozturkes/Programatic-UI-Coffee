@@ -32,7 +32,7 @@ class GFView: UIView {
         layer.cornerRadius       = 16
         clipsToBounds            = true
         layer.backgroundColor    = UIColor.systemYellow.cgColor
-        layer.borderWidth        = 1
+        layer.borderWidth        = 0
     }
 
 }

@@ -33,6 +33,7 @@ class HomeVC: UIViewController {
 
         collectionView.register(HomeCell1.self, forCellWithReuseIdentifier: HomeCell1.reuseID)
         collectionView.register(HomeCell2.self, forCellWithReuseIdentifier: HomeCell2.reuseID)
+        collectionView.register(HomeCell3.self, forCellWithReuseIdentifier: HomeCell3.reuseID)
      
         view.addSubview(collectionView)
         collectionView.collectionViewLayout = createLayout()
@@ -47,14 +48,16 @@ class HomeVC: UIViewController {
             let section = self.pageData[sectionIndex]
             
             switch section {
+                
             case .headers:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.322)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .none
                 section.interGroupSpacing = 10
               
                 return section
+                
             case .stories:
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(120), heightDimension: .absolute(40)), subitems: [item])
@@ -62,14 +65,25 @@ class HomeVC: UIViewController {
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 10
                 section.contentInsets = .init(top: 16, leading: 24, bottom: 30, trailing: 0)
+                
                 return section
             
+            case .product(_):
+            
+                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(149), heightDimension: .absolute(239))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(239))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+                group.interItemSpacing = .fixed(16)
+                let section = NSCollectionLayoutSection(group: group)
+                let contentInsets = (collectionView.bounds.width - (2 * 149 + 16)) / 2
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: contentInsets, bottom: 16, trailing: contentInsets)
+                section.interGroupSpacing = 12
+                
+                return section
             }
         }
     }
-    
-    
-  
 }
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -84,7 +98,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch pageData[indexPath.section] {
-        case .headers(let items):
+        case .headers(_):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell1.reuseID, for: indexPath) as! HomeCell1
            
             return cell
@@ -92,10 +106,12 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell2.reuseID, for: indexPath) as! HomeCell2
             cell.setup(items[indexPath.row])
             return cell
-//        case .sellers(let items):
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell3.reuseID, for: indexPath) as! HomeCell3
-//           
-//            return cell
+        case .product(let items):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell3.reuseID, for: indexPath) as! HomeCell3
+            let listItem = ListItem(title: "Your Title")
+            cell.setup(listItem, products: items[indexPath.row])
+            return cell
+
         }
     }
     

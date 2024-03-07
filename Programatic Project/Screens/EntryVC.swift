@@ -12,7 +12,7 @@ class EntryVC: UIViewController {
     var imageBackground = GFImageView(frame: .zero)
     var titleLabel      = GFTitleLabel(textAlignment: .center, fontSize: 34, textColor: .white)
     var secondryTitle   = GFSecondaryTitleLabel(fontSize: 14)
-    var EntryButton     = GFLabelButton(backgroundColor: UIColor.systemOrange, title: "Get Started")
+    var EntryButton     = GFLabelButton(backgroundColor: UIColor.systemOrange, title: "Get Started", cornerR: 16)
     
     
     override func viewDidLoad() {

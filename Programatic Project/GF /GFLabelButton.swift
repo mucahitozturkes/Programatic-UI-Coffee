@@ -19,16 +19,15 @@ class GFLabelButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(backgroundColor: UIColor, title: String) {
+    convenience init(backgroundColor: UIColor, title: String, cornerR: CGFloat) {
         self.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
+        self.layer.cornerRadius = cornerR
     }
     
     private func configure() {
-        layer.cornerRadius         = 16
         titleLabel?.font           = UIFont.preferredFont(forTextStyle: .headline)
-        setTitleColor(.white, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
