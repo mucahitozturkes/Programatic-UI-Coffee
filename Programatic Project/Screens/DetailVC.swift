@@ -9,6 +9,7 @@ import UIKit
 
 class DetailVC: UIViewController {
 
+    let scrollView          = UIScrollView()
     let backButton          = GFLabelButton(backgroundColor: .white, title: "", cornerR: 5)
     let titleLabel          = GFTitleLabel(textAlignment: .center, fontSize: 18, textColor: .black)
     let heartButton         = GFLabelButton(backgroundColor: .white, title: "", cornerR: 5)
@@ -39,6 +40,7 @@ class DetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollerView()
         configureView()
         configureBackButton()
         configureTitle()
@@ -66,8 +68,22 @@ class DetailVC: UIViewController {
     }
     
     
+    func scrollerView() {
+        view.addSubview(scrollView)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+           NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+           ])
+    }
+    
+    
     func configureBackButton() {
-        view.addSubview(backButton)
+        scrollView.addSubview(backButton)
         
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         backButton.tintColor        = .black
@@ -81,8 +97,8 @@ class DetailVC: UIViewController {
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            backButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30),
+            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
             backButton.heightAnchor.constraint(equalToConstant: 32),
             backButton.widthAnchor.constraint(equalToConstant: 32)
         ])
@@ -94,13 +110,13 @@ class DetailVC: UIViewController {
     }
     
     func configureTitle() {
-        view.addSubview(titleLabel)
+        scrollView.addSubview(titleLabel)
       
         titleLabel.text         = product?.title
         titleLabel.font         = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
          
             
@@ -110,12 +126,12 @@ class DetailVC: UIViewController {
     
     
     func configureHeart() {
-        view.addSubview(heartButton)
+        scrollView.addSubview(heartButton)
         
         heartButton.setImage(UIImage(named: "heart"), for: .normal)
         
         NSLayoutConstraint.activate([
-            heartButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            heartButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
             heartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             heartButton.heightAnchor.constraint(equalToConstant: 24),
             heartButton.widthAnchor.constraint(equalToConstant: 24)
@@ -125,19 +141,17 @@ class DetailVC: UIViewController {
     
     
     func configureImageView() {
-        view.addSubview(imageView)
+        scrollView.addSubview(imageView)
 
-        if let imageName = product?.image {
-            // Load the image using UIImage(named:) if it's in your app's bundle
-            if let image = UIImage(named: imageName) {
-                imageView.image = image
-            }
-        }
+        
+        imageView.image = UIImage(named: product?.image ?? "")
+            
+        
 
         let aspectRatio: CGFloat = 4 / 3
 
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25),
+            imageView.topAnchor.constraint(lessThanOrEqualTo: titleLabel.bottomAnchor, constant: 25),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1/aspectRatio),
@@ -147,7 +161,7 @@ class DetailVC: UIViewController {
 
     
     func configureBodyTitle() {
-        view.addSubview(bodyTitle)
+        scrollView.addSubview(bodyTitle)
         
         bodyTitle.text      = "Cappucino"
         bodyTitle.font      = UIFont.systemFont(ofSize: 20, weight: .semibold)
@@ -160,7 +174,7 @@ class DetailVC: UIViewController {
     
     
     func configureSecondTitle() {
-        view.addSubview(secontTitle)
+        scrollView.addSubview(secontTitle)
         
         secontTitle.text        = product?.secondaryTitle
         secontTitle.font        = UIFont.systemFont(ofSize: 12, weight: .light)
@@ -173,7 +187,7 @@ class DetailVC: UIViewController {
     
     
     func configureStarImage() {
-        view.addSubview(starImageView)
+        scrollView.addSubview(starImageView)
         
         starImageView.image     = UIImage(systemName: "star.fill")
         starImageView.tintColor = UIColor(named: "star")
@@ -188,7 +202,7 @@ class DetailVC: UIViewController {
     
     
     func configureVotes() {
-        view.addSubview(votes)
+        scrollView.addSubview(votes)
         
         
            if let vote = product?.vote {
@@ -203,7 +217,7 @@ class DetailVC: UIViewController {
     
     
     func configureVotesNumber() {
-        view.addSubview(votesNumbers)
+        scrollView.addSubview(votesNumbers)
         
         votesNumbers.text       = "(230)"
         votesNumbers.font       = UIFont.systemFont(ofSize: 12, weight: .light)
@@ -216,7 +230,7 @@ class DetailVC: UIViewController {
     
     
     func configureIcons() {
-        view.addSubview(iconView)
+        scrollView.addSubview(iconView)
         iconView.addSubview(icons)
         
         icons.image                     = UIImage(named: "icon1")
@@ -242,7 +256,7 @@ class DetailVC: UIViewController {
     
     
     func configureIcons2() {
-        view.addSubview(iconView2)
+        scrollView.addSubview(iconView2)
         iconView2.addSubview(icons2)
         
         icons2.image                     = UIImage(named: "icon2")
@@ -268,7 +282,7 @@ class DetailVC: UIViewController {
     
     
     func configureSpacetor() {
-        view.addSubview(spacetor)
+        scrollView.addSubview(spacetor)
         
         spacetor.backgroundColor    = UIColor(named: "line")
         
@@ -282,7 +296,7 @@ class DetailVC: UIViewController {
     
     
     func configuredescriptionTitle() {
-        view.addSubview(descriptionTitle)
+        scrollView.addSubview(descriptionTitle)
         
         descriptionTitle.text       = "Description"
         descriptionTitle.font       = UIFont.systemFont(ofSize: 18, weight: .medium)
@@ -295,7 +309,7 @@ class DetailVC: UIViewController {
     
     
     func configureTextBox() {
-        view.addSubview(textBox)
+        scrollView.addSubview(textBox)
 
         textBox.text                                        = "A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85ml of fresh milk the"
         textBox.translatesAutoresizingMaskIntoConstraints   = false
@@ -315,7 +329,7 @@ class DetailVC: UIViewController {
     
     
     func configureSize() {
-        view.addSubview(sizeText)
+        scrollView.addSubview(sizeText)
         
         sizeText.text       = "Size"
         sizeText.font        = UIFont.systemFont(ofSize: 18, weight: .medium)
@@ -329,7 +343,7 @@ class DetailVC: UIViewController {
     
     
     func configureSML() {
-        view.addSubview(stackViewSML)
+        scrollView.addSubview(stackViewSML)
         
         stackViewSML.addArrangedSubview(smallButton)
         stackViewSML.addArrangedSubview(mediumButton)
@@ -351,7 +365,7 @@ class DetailVC: UIViewController {
         NSLayoutConstraint.activate([
             stackViewSML.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             stackViewSML.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            stackViewSML.topAnchor.constraint(equalTo: sizeText.bottomAnchor, constant: 8),
+            stackViewSML.topAnchor.constraint(equalTo: sizeText.bottomAnchor, constant: 12),
 
             smallButton.heightAnchor.constraint(equalToConstant: 43),
             mediumButton.heightAnchor.constraint(equalToConstant: 43),
@@ -375,20 +389,26 @@ class DetailVC: UIViewController {
 
     
     func configureBottomView() {
-        view.addSubview(bottomView)
+        scrollView.addSubview(bottomView)
         bottomView.addSubview(buyButton)
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+      
+        
         bottomView.layer.backgroundColor      = UIColor.white.cgColor
+
+        bottomView.layer.masksToBounds = false
         
         NSLayoutConstraint.activate([
-            bottomView.heightAnchor.constraint(lessThanOrEqualToConstant: 121),
-            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomView.topAnchor.constraint(greaterThanOrEqualTo: stackViewSML.bottomAnchor, constant: 16),
+            bottomView.heightAnchor.constraint(equalToConstant: 121),
+            bottomView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            bottomView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            bottomView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
           
             
             buyButton.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            buyButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            buyButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor),
             buyButton.heightAnchor.constraint(equalToConstant: 55),
             buyButton.widthAnchor.constraint(equalToConstant: 250)
         ])
@@ -400,23 +420,15 @@ class DetailVC: UIViewController {
         stackViewPrice.addArrangedSubview(priceText)
         stackViewPrice.addArrangedSubview(priceInt)
         
-        bottomView.layer.shadowColor = UIColor.lightGray.cgColor
-        bottomView.layer.shadowOpacity = 0.1
-        bottomView.layer.shadowOffset = CGSize(width: 0, height: -2)
-        bottomView.layer.shadowRadius = 8
-        bottomView.layer.masksToBounds = false
-       
-        
         priceText.font      = UIFont.systemFont(ofSize: 16, weight: .light)
         priceText.text      = "Price"
         
         priceInt.font       = UIFont.systemFont(ofSize: 21, weight: .medium)
         priceInt.text       = "$ \(product?.price ?? 0)"
         
-        
         NSLayoutConstraint.activate([
-            stackViewPrice.leadingAnchor.constraint(equalTo: sizeText.leadingAnchor),
-            stackViewPrice.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor)
+            stackViewPrice.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            stackViewPrice.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor)
         ])
     }
 }

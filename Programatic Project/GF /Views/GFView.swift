@@ -31,6 +31,8 @@ class GFView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius       = 16
         clipsToBounds            = true
+        
+        
 
       
     }
