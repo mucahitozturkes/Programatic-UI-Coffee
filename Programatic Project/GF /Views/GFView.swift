@@ -29,7 +29,7 @@ class GFView: UIView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius       = 16
+        layer.cornerRadius       = 5
         clipsToBounds            = true
         
         

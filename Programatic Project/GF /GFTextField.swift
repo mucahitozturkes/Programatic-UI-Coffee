@@ -28,7 +28,7 @@ class GFTextField: UITextField {
     
     private func configure() {
         layer.cornerRadius = 17
-        backgroundColor = .darkGray
+        backgroundColor = UIColor(named: "searchbar")
         translatesAutoresizingMaskIntoConstraints = false
 
     

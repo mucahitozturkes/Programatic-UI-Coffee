@@ -105,14 +105,13 @@ class DetailVC: UIViewController {
     }
     
     @objc func backButtonPressed() {
-        // Dismiss the current view controller
         self.dismiss(animated: true, completion: nil)
     }
     
     func configureTitle() {
         scrollView.addSubview(titleLabel)
       
-        titleLabel.text         = product?.title
+        titleLabel.text         = "Detail"
         titleLabel.font         = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         NSLayoutConstraint.activate([
@@ -163,7 +162,7 @@ class DetailVC: UIViewController {
     func configureBodyTitle() {
         scrollView.addSubview(bodyTitle)
         
-        bodyTitle.text      = "Cappucino"
+        bodyTitle.text      = product?.title
         bodyTitle.font      = UIFont.systemFont(ofSize: 20, weight: .semibold)
         
         NSLayoutConstraint.activate([
@@ -358,7 +357,6 @@ class DetailVC: UIViewController {
             button.layer.borderColor = UIColor(named: "stroke")?.cgColor
             button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .light)
             
-            // Add target action for button tap
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
         
@@ -374,14 +372,13 @@ class DetailVC: UIViewController {
     }
 
     @objc func buttonTapped(_ sender: UIButton) {
-        // Reset styling for all buttons
+        
         for button in [smallButton, mediumButton, largeButton] {
             button.backgroundColor = .white
             button.setTitleColor(.black, for: .normal)
             button.layer.borderColor = UIColor(named: "stroke")?.cgColor
         }
         
-        // Apply selected styling to the tapped button
         sender.backgroundColor = UIColor(named: "buttonAlpha")
         sender.setTitleColor(UIColor(named: "buttoncolor"), for: .normal)
         sender.layer.borderColor = UIColor(named: "buttoncolor")?.cgColor
@@ -408,7 +405,7 @@ class DetailVC: UIViewController {
           
             
             buyButton.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            buyButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor),
+            buyButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30),
             buyButton.heightAnchor.constraint(equalToConstant: 55),
             buyButton.widthAnchor.constraint(equalToConstant: 250)
         ])
@@ -428,7 +425,7 @@ class DetailVC: UIViewController {
         
         NSLayoutConstraint.activate([
             stackViewPrice.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            stackViewPrice.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor)
+            stackViewPrice.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30)
         ])
     }
 }

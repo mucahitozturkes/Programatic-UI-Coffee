@@ -23,7 +23,7 @@ class GFImageView: UIImageView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius          = 8
+        layer.cornerRadius          = 3
         clipsToBounds               = true
        
     }

@@ -15,10 +15,10 @@ class HomeCell1: UICollectionViewCell {
     var blackView           = GFView(cornerRadius: 0, borderWidth: 0)
     var secondaryView       = GFImageView(frame: .zero)
     var profileImageView    = GFImageView(frame: .zero)
-    var searchBarTextField  = GFTextField()
+    var searchBarTextField  = UISearchTextField()
     var filterButton        = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor")!, title: "", cornerR: 16)
     var locationLabel       = GFTitleLabel(textAlignment: .left, fontSize: 14, textColor: .white)
-    var locationButton      = GFButtonLabel(title: "Bilzen, Tanjungbalai", textColor: .white, fontSize: 14, fontWeight: .medium)
+    var locationButton      = GFButtonLabel(title: "Bilzen, Tanjungbalai", textColor: .white, fontSize: 16, fontWeight: .medium)
     var promoViewButton     = GFLabelButton(backgroundColor: .systemRed, title: "Promo", cornerR: 16)
     var titleLabelInfo      = GFTitleLabel(textAlignment: .left, fontSize: 32, textColor: .white)
     
@@ -130,30 +130,35 @@ class HomeCell1: UICollectionViewCell {
     private func configureSearchBar() {
         addSubview(searchBarTextField)
         searchBarTextField.addSubview(filterButton)
+        searchBarTextField.translatesAutoresizingMaskIntoConstraints = false
+      
+        searchBarTextField.placeholder  = "Search coffee"
+        searchBarTextField.textColor    = .white
+        searchBarTextField.clearButtonMode = .never
         
-        let placeholderLabel        = UILabel()
-        placeholderLabel.text       = "Search coffee"
-        placeholderLabel.textColor  = .white
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        searchBarTextField.addSubview(placeholderLabel)
+        searchBarTextField.attributedPlaceholder = NSAttributedString(
+            string: "Search coffee",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
+        )
 
+        if let glassIcon = UIImage(systemName: "magnifyingglass")?.withTintColor(.white, renderingMode: .alwaysOriginal) {
+      
+            searchBarTextField.leftView = UIImageView(image: glassIcon)
+            searchBarTextField.leftViewMode = .always
+        }
+       
         if let originalImage = UIImage(named: "filter") {
-            let scaledImage = originalImage.resizableImage(withCapInsets: .zero, resizingMode: .stretch)
-            let scaledSize = CGSize(width: originalImage.size.width * 0.5, height: originalImage.size.height * 0.5)
-
-            UIGraphicsBeginImageContextWithOptions(scaledSize, false, 0.0)
-            scaledImage.draw(in: CGRect(origin: .zero, size: scaledSize))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-
-            filterButton.setImage(newImage, for: .normal)
+            let scaledImage = originalImage.resized(to: CGSize(width: originalImage.size.width * 0.5, height: originalImage.size.height * 0.5))
+            
+            var config = UIButton.Configuration.plain()
+            config.image = scaledImage
+           
+            
+            filterButton.configuration = config
         }
 
-        let searchImageView = UIImageView(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate))
-        searchImageView.tintColor = .white
-        searchBarTextField.addSubview(searchImageView)
 
-        searchImageView.translatesAutoresizingMaskIntoConstraints = false
+
 
         NSLayoutConstraint.activate([
             searchBarTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -165),
@@ -166,11 +171,6 @@ class HomeCell1: UICollectionViewCell {
             filterButton.bottomAnchor.constraint(equalTo: searchBarTextField.bottomAnchor, constant: -2),
             filterButton.widthAnchor.constraint(equalToConstant: 45),
 
-            searchImageView.centerYAnchor.constraint(equalTo: searchBarTextField.centerYAnchor),
-            searchImageView.leadingAnchor.constraint(equalTo: searchBarTextField.leadingAnchor, constant: 16),
-
-            placeholderLabel.centerYAnchor.constraint(equalTo: searchBarTextField.centerYAnchor),
-            placeholderLabel.leadingAnchor.constraint(equalTo: searchImageView.trailingAnchor, constant: 8)
         ])
     }
 
@@ -195,7 +195,6 @@ class HomeCell1: UICollectionViewCell {
     private func configureLocationButton() {
         addSubview(locationButton)
 
-        // Add down arrow image view
         let downArrowImageView = UIImageView(image: UIImage(systemName: "chevron.down"))
         downArrowImageView.tintColor        = .white
         downArrowImageView.contentMode      = .scaleAspectFit
@@ -209,5 +208,13 @@ class HomeCell1: UICollectionViewCell {
             downArrowImageView.leadingAnchor.constraint(equalTo: locationButton.titleLabel!.trailingAnchor, constant: 4),
             downArrowImageView.centerYAnchor.constraint(equalTo: locationButton.titleLabel!.centerYAnchor)
         ])
+    }
+}
+extension UIImage {
+    func resized(to newSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: newSize))
+        return UIGraphicsGetImageFromCurrentImageContext() ?? self
     }
 }
