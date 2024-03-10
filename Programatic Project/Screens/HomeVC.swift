@@ -13,6 +13,7 @@ class HomeVC: UIViewController {
 
     private let pageData = MockData.shared.pageData
     var selectedIndexPath: IndexPath?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,11 +117,26 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      let destVC        = DetailVC()
+        switch pageData[indexPath.section] {
+        case .headers(let header):
+            print("Selected header cell at section \(indexPath.section) with data: \(header)")
+        case .stories(let items):
+            let selectedStory = items[indexPath.row]
+            print("Selected story cell at section \(indexPath.section), row \(indexPath.row) with data: \(selectedStory)")
+        case .product(let items):
+            let selectedProduct = items[indexPath.row]
+            let destVC = DetailVC()
+            destVC.product  = selectedProduct
+            
+            destVC.modalTransitionStyle = .coverVertical
+            destVC.modalPresentationStyle = .fullScreen
+            present(destVC, animated: true)
+            print("Selected product cell at section \(indexPath.section), row \(indexPath.row) with data: \(selectedProduct)")
+        }
+
         
-        destVC.modalTransitionStyle     = .crossDissolve
-        destVC.modalPresentationStyle   = .fullScreen
-        present(destVC, animated: true)
+    
     }
+
 
 }

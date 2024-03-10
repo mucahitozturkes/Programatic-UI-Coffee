@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0890C6C42B9DBD4E00CC1392 /* GFStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890C6C32B9DBD4E00CC1392 /* GFStackView.swift */; };
 		08EC99522B8F86090082BEF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99512B8F86090082BEF5 /* AppDelegate.swift */; };
 		08EC99542B8F86090082BEF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99532B8F86090082BEF5 /* SceneDelegate.swift */; };
 		08EC995B2B8F860A0082BEF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08EC995A2B8F860A0082BEF5 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0890C6C32B9DBD4E00CC1392 /* GFStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFStackView.swift; sourceTree = "<group>"; };
 		08EC994E2B8F86090082BEF5 /* Programatic Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Programatic Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08EC99512B8F86090082BEF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08EC99532B8F86090082BEF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				08EC998A2B9265F80082BEF5 /* GFSecondaryTitleLabel.swift */,
 				08EC99952B95C02B0082BEF5 /* GFButtonLabel.swift */,
 				08EC99882B925F5D0082BEF5 /* GFLabelButton.swift */,
+				0890C6C32B9DBD4E00CC1392 /* GFStackView.swift */,
 			);
 			path = "GF ";
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				08EC99982B95C54C0082BEF5 /* HomeCell3.swift in Sources */,
 				08EC99832B9218650082BEF5 /* GFTabBarController.swift in Sources */,
 				08EC99892B925F5D0082BEF5 /* GFLabelButton.swift in Sources */,
+				0890C6C42B9DBD4E00CC1392 /* GFStackView.swift in Sources */,
 				08EC998D2B946F960082BEF5 /* HomeCell2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -32,10 +32,10 @@ class DetailVC: UIViewController {
     let priceInt            = GFTitleLabel(textAlignment: .left, fontSize: 21, textColor: UIColor(named: "buttoncolor") ?? .brown)
     let buyButton           = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor") ?? .brown, title: "Buy Now", cornerR: 12)
     let spacetor            = GFImageView(frame: .zero)
-    let stackViewSML        = UIStackView()
+    let stackViewSML        = GFStackView(space: 12, distribution: .fillEqually, axis: .horizontal)
     let bottomView          = GFView(cornerRadius: 24, borderWidth: 0)
-    let stackViewPrice      = UIStackView()
-    
+    let stackViewPrice      = GFStackView(space: 3, distribution: .fillEqually, axis: .vertical)
+    var product: productList?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +78,8 @@ class DetailVC: UIViewController {
         backButton.layer.shadowRadius = 3
         backButton.layer.masksToBounds = false
         
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
@@ -86,11 +88,15 @@ class DetailVC: UIViewController {
         ])
     }
     
+    @objc func backButtonPressed() {
+        // Dismiss the current view controller
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func configureTitle() {
         view.addSubview(titleLabel)
       
-        titleLabel.text         = "Detail"
+        titleLabel.text         = product?.title
         titleLabel.font         = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         NSLayoutConstraint.activate([
@@ -121,9 +127,14 @@ class DetailVC: UIViewController {
     func configureImageView() {
         view.addSubview(imageView)
 
-        imageView.backgroundColor = .red
+        if let imageName = product?.image {
+            // Load the image using UIImage(named:) if it's in your app's bundle
+            if let image = UIImage(named: imageName) {
+                imageView.image = image
+            }
+        }
 
-        let aspectRatio: CGFloat = 16 / 9
+        let aspectRatio: CGFloat = 4 / 3
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25),
@@ -151,7 +162,7 @@ class DetailVC: UIViewController {
     func configureSecondTitle() {
         view.addSubview(secontTitle)
         
-        secontTitle.text        = "with Cholocolate"
+        secontTitle.text        = product?.secondaryTitle
         secontTitle.font        = UIFont.systemFont(ofSize: 12, weight: .light)
         
         NSLayoutConstraint.activate([
@@ -179,7 +190,10 @@ class DetailVC: UIViewController {
     func configureVotes() {
         view.addSubview(votes)
         
-        votes.text      = "4.8"
+        
+           if let vote = product?.vote {
+               votes.text = "\(vote)"
+           }
         
         NSLayoutConstraint.activate([
             votes.topAnchor.constraint(equalTo: secontTitle.bottomAnchor, constant: 16),
@@ -320,12 +334,6 @@ class DetailVC: UIViewController {
         stackViewSML.addArrangedSubview(smallButton)
         stackViewSML.addArrangedSubview(mediumButton)
         stackViewSML.addArrangedSubview(largeButton)
-
-        stackViewSML.axis = .horizontal
-        stackViewSML.distribution = .fillEqually
-        stackViewSML.spacing = 12
-        
-        stackViewSML.translatesAutoresizingMaskIntoConstraints = false
         
         let buttons = [smallButton, mediumButton, largeButton]
         
@@ -334,7 +342,7 @@ class DetailVC: UIViewController {
             button.setTitleColor(.black, for: .normal)
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor(named: "stroke")?.cgColor
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .light)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .light)
             
             // Add target action for button tap
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
@@ -360,7 +368,7 @@ class DetailVC: UIViewController {
         }
         
         // Apply selected styling to the tapped button
-        sender.backgroundColor = UIColor(named: "buttonalpha")
+        sender.backgroundColor = UIColor(named: "buttonAlpha")
         sender.setTitleColor(UIColor(named: "buttoncolor"), for: .normal)
         sender.layer.borderColor = UIColor(named: "buttoncolor")?.cgColor
     }
@@ -392,16 +400,18 @@ class DetailVC: UIViewController {
         stackViewPrice.addArrangedSubview(priceText)
         stackViewPrice.addArrangedSubview(priceInt)
         
-        stackViewPrice.translatesAutoresizingMaskIntoConstraints = false
-        stackViewPrice.axis = .vertical
-        stackViewPrice.distribution = .fillEqually
-        stackViewPrice.spacing = 6
+        bottomView.layer.shadowColor = UIColor.lightGray.cgColor
+        bottomView.layer.shadowOpacity = 0.1
+        bottomView.layer.shadowOffset = CGSize(width: 0, height: -2)
+        bottomView.layer.shadowRadius = 8
+        bottomView.layer.masksToBounds = false
+       
         
         priceText.font      = UIFont.systemFont(ofSize: 16, weight: .light)
         priceText.text      = "Price"
         
         priceInt.font       = UIFont.systemFont(ofSize: 21, weight: .medium)
-        priceInt.text       = "$ \(4.53)"
+        priceInt.text       = "$ \(product?.price ?? 0)"
         
         
         NSLayoutConstraint.activate([
