@@ -79,8 +79,10 @@ class HomeCell1: UICollectionViewCell {
         secondaryView.addSubview(titleLabelInfo)
         
         secondaryView.image = UIImage(named: "secondaryView")
+        
         promoViewButton.layer.cornerRadius = 5
         promoViewButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        
         titleLabelInfo.text = "Buy one get\none FREE"
         titleLabelInfo.numberOfLines = 2
 
@@ -96,11 +98,13 @@ class HomeCell1: UICollectionViewCell {
             
             promoViewButton.topAnchor.constraint(equalTo: secondaryView.topAnchor, constant: 13),
             promoViewButton.leadingAnchor.constraint(equalTo: secondaryView.leadingAnchor, constant: 23),
+            
             promoViewButton.widthAnchor.constraint(equalToConstant: 60),
             promoViewButton.heightAnchor.constraint(equalToConstant: 26),
             
             titleLabelInfo.leadingAnchor.constraint(equalTo: promoViewButton.leadingAnchor),
             titleLabelInfo.bottomAnchor.constraint(equalTo: secondaryView.bottomAnchor, constant: -6),
+            
             titleLabelInfo.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
@@ -193,8 +197,8 @@ class HomeCell1: UICollectionViewCell {
 
         // Add down arrow image view
         let downArrowImageView = UIImageView(image: UIImage(systemName: "chevron.down"))
-        downArrowImageView.tintColor = .white
-        downArrowImageView.contentMode = .scaleAspectFit
+        downArrowImageView.tintColor        = .white
+        downArrowImageView.contentMode      = .scaleAspectFit
         downArrowImageView.translatesAutoresizingMaskIntoConstraints = false
         locationButton.addSubview(downArrowImageView)
 

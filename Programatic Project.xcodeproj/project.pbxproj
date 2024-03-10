@@ -27,6 +27,7 @@
 		08EC99962B95C02B0082BEF5 /* GFButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99952B95C02B0082BEF5 /* GFButtonLabel.swift */; };
 		08EC99982B95C54C0082BEF5 /* HomeCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99972B95C54C0082BEF5 /* HomeCell3.swift */; };
 		08EC99CB2B9869E90082BEF5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99CA2B9869E90082BEF5 /* MockData.swift */; };
+		08EC99CD2B9B07C40082BEF5 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99CC2B9B07C40082BEF5 /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		08EC99952B95C02B0082BEF5 /* GFButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButtonLabel.swift; sourceTree = "<group>"; };
 		08EC99972B95C54C0082BEF5 /* HomeCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell3.swift; sourceTree = "<group>"; };
 		08EC99CA2B9869E90082BEF5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		08EC99CC2B9B07C40082BEF5 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			children = (
 				08EC99862B925BF80082BEF5 /* EntryVC.swift */,
 				08EC99652B8F87250082BEF5 /* HomeVC.swift */,
+				08EC99CC2B9B07C40082BEF5 /* DetailVC.swift */,
 				08EC99842B921A7D0082BEF5 /* SettingsVC.swift */,
 			);
 			path = Screens;
@@ -254,6 +257,7 @@
 				08EC99942B94BBC60082BEF5 /* GFTextField.swift in Sources */,
 				08EC99852B921A7D0082BEF5 /* SettingsVC.swift in Sources */,
 				08EC99662B8F87250082BEF5 /* HomeVC.swift in Sources */,
+				08EC99CD2B9B07C40082BEF5 /* DetailVC.swift in Sources */,
 				08EC99712B8FB43B0082BEF5 /* GFImage.swift in Sources */,
 				08EC99872B925BF80082BEF5 /* EntryVC.swift in Sources */,
 				08EC99792B90B4EE0082BEF5 /* GFError.swift in Sources */,

@@ -21,8 +21,6 @@ class EntryVC: UIViewController {
         configureTitleLabel()
         configureSecondryTitle()
         configureButton()
-        view.backgroundColor = .black
-        
     }
     
     

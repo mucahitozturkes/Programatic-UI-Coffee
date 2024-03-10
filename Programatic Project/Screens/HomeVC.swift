@@ -12,12 +12,11 @@ class HomeVC: UIViewController {
     var collectionView:  UICollectionView!
 
     private let pageData = MockData.shared.pageData
+    var selectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-       title = "Collection View"
-        view.backgroundColor = .red
     }
     
     
@@ -64,12 +63,11 @@ class HomeVC: UIViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 18
-                section.contentInsets = .init(top: 16, leading: 24, bottom: 30, trailing: 0)
+                section.contentInsets = .init(top: 32, leading: 24, bottom: 30, trailing: 0)
                 
                 return section
             
-            case .product(_):
-            
+            case .product:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(149), heightDimension: .absolute(239))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(239))
@@ -111,10 +109,18 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         case .product(let items):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell3.reuseID, for: indexPath) as! HomeCell3
-            let listItem = ListItem(title: "Your Title")
-            cell.setup(listItem, products: items[indexPath.row])
+            cell.setup(ListItem(title: ""), products: items[indexPath.row])
             return cell
 
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      let destVC        = DetailVC()
+        
+        destVC.modalTransitionStyle     = .crossDissolve
+        destVC.modalPresentationStyle   = .fullScreen
+        present(destVC, animated: true)
+    }
+
 }

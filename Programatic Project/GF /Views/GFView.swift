@@ -31,8 +31,8 @@ class GFView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius       = 16
         clipsToBounds            = true
-        layer.backgroundColor    = UIColor.systemYellow.cgColor
-        layer.borderWidth        = 0
+
+      
     }
 
 }
