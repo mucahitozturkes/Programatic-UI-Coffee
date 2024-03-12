@@ -11,8 +11,8 @@ class HomeCell1: UICollectionViewCell {
 
     static let reuseID = "HomeCell1"
     
-    var MainView            = GFView(cornerRadius: 0, borderWidth: 0)
-    var blackView           = GFView(cornerRadius: 0, borderWidth: 0)
+    var MainView            = GFView(backgroundColor: .white, cornerRadius: 0, borderWidth: 0)
+    var blackView           = GFView(backgroundColor: .black, cornerRadius: 0, borderWidth: 0)
     var secondaryView       = GFImageView(frame: .zero)
     var profileImageView    = GFImageView(frame: .zero)
     var searchBarTextField  = UISearchTextField()
@@ -43,9 +43,6 @@ class HomeCell1: UICollectionViewCell {
     private func configureMainView() {
         addSubview(MainView)
 
-        MainView.backgroundColor = .systemBackground
-
-
         NSLayoutConstraint.activate([
             MainView.topAnchor.constraint(equalTo: topAnchor),
             MainView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -60,9 +57,6 @@ class HomeCell1: UICollectionViewCell {
     
     private func configureBlackView() {
         addSubview(blackView)
-        
-        blackView.backgroundColor = .black
-        
         
         NSLayoutConstraint.activate([
             blackView.topAnchor.constraint(equalTo: topAnchor),

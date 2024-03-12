@@ -20,16 +20,16 @@ class GFView: UIView {
     }
     
     
-    convenience init(cornerRadius: CGFloat, borderWidth: CGFloat) {
+    convenience init(backgroundColor: UIColor,cornerRadius: CGFloat, borderWidth: CGFloat) {
         self.init(frame: .zero)
         self.layer.cornerRadius  = cornerRadius
         self.layer.borderWidth   = borderWidth
+        self.backgroundColor     = backgroundColor
     }
     
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius       = 5
         clipsToBounds            = true
         
         

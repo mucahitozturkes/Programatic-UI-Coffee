@@ -45,7 +45,7 @@ class OrderCell: UITableViewCell {
         imageShow.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            imageShow.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageShow.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             imageShow.centerYAnchor.constraint(equalTo: centerYAnchor),
             imageShow.heightAnchor.constraint(equalToConstant: 54),
             imageShow.widthAnchor.constraint(equalToConstant: 54)
@@ -102,7 +102,7 @@ class OrderCell: UITableViewCell {
         let scale = CGFloat(30)
 
         NSLayoutConstraint.activate([
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
             minusButton.heightAnchor.constraint(equalToConstant: scale),

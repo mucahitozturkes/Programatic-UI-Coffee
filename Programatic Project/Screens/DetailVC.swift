@@ -27,14 +27,14 @@ class DetailVC: UIViewController {
     let smallButton         = GFLabelButton(backgroundColor: .black, title: "S", cornerR: 12)
     let mediumButton        = GFLabelButton(backgroundColor: .black, title: "M", cornerR: 12)
     let largeButton         = GFLabelButton(backgroundColor: .black, title: "L", cornerR: 12)
-    let iconView            = GFView(cornerRadius: 12, borderWidth: 0)
-    let iconView2           = GFView(cornerRadius: 12, borderWidth: 0)
+    let iconView            = GFView(backgroundColor: UIColor(named: "secondTitle") ?? .red, cornerRadius: 12, borderWidth: 0)
+    let iconView2           = GFView(backgroundColor: UIColor(named: "secondTitle") ?? .red, cornerRadius: 12, borderWidth: 0)
     let priceText           = GFTitleLabel(textAlignment: .left, fontSize: 14, textColor: .lightGray)
     let priceInt            = GFTitleLabel(textAlignment: .left, fontSize: 21, textColor: UIColor(named: "buttoncolor") ?? .brown)
     let buyButton           = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor") ?? .brown, title: "Buy Now", cornerR: 12)
     let spacetor            = GFImageView(frame: .zero)
     let stackViewSML        = GFStackView(space: 12, distribution: .fillEqually, axis: .horizontal)
-    let bottomView          = GFView(cornerRadius: 24, borderWidth: 1)
+    let bottomView          = GFView(backgroundColor: .white, cornerRadius: 24, borderWidth: 1)
     let stackViewPrice      = GFStackView(space: 3, distribution: .fillEqually, axis: .vertical)
     var product: productList?
     
@@ -232,8 +232,6 @@ class DetailVC: UIViewController {
         icons.image                     = UIImage(named: "icon1")
         icons.layer.cornerRadius        = 0
             
-            
-        iconView.backgroundColor      = UIColor(named: "secondTitle")
         iconView.layer.cornerRadius   = 12
         
         NSLayoutConstraint.activate([
