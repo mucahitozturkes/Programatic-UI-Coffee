@@ -14,7 +14,7 @@ class GFStackView: UIStackView {
         self.axis = axis
         self.distribution = distribution
         self.spacing = space
-        translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     override init(frame: CGRect) {

@@ -9,7 +9,7 @@ import UIKit
 
 class DetailVC: UIViewController {
 
-    let scrollView          = UIScrollView()
+    let scrollView          = GFScrollView()
     let backButton          = GFLabelButton(backgroundColor: .white, title: "", cornerR: 5)
     let titleLabel          = GFTitleLabel(textAlignment: .center, fontSize: 18, textColor: .black)
     let heartButton         = GFLabelButton(backgroundColor: .white, title: "", cornerR: 5)
@@ -34,7 +34,7 @@ class DetailVC: UIViewController {
     let buyButton           = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor") ?? .brown, title: "Buy Now", cornerR: 12)
     let spacetor            = GFImageView(frame: .zero)
     let stackViewSML        = GFStackView(space: 12, distribution: .fillEqually, axis: .horizontal)
-    let bottomView          = GFView(cornerRadius: 24, borderWidth: 0)
+    let bottomView          = GFView(cornerRadius: 24, borderWidth: 1)
     let stackViewPrice      = GFStackView(space: 3, distribution: .fillEqually, axis: .vertical)
     var product: productList?
     
@@ -71,13 +71,11 @@ class DetailVC: UIViewController {
     func scrollerView() {
         view.addSubview(scrollView)
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
            NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
            ])
     }
     
@@ -103,7 +101,6 @@ class DetailVC: UIViewController {
             backButton.widthAnchor.constraint(equalToConstant: 32)
         ])
     }
-    
     @objc func backButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -370,7 +367,6 @@ class DetailVC: UIViewController {
             largeButton.heightAnchor.constraint(equalToConstant: 43),
         ])
     }
-
     @objc func buttonTapped(_ sender: UIButton) {
         
         for button in [smallButton, mediumButton, largeButton] {
@@ -386,34 +382,29 @@ class DetailVC: UIViewController {
 
     
     func configureBottomView() {
-        scrollView.addSubview(bottomView)
-        bottomView.addSubview(buyButton)
+        scrollView.addSubview(buyButton)
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-      
-        
-        bottomView.layer.backgroundColor      = UIColor.white.cgColor
-
-        bottomView.layer.masksToBounds = false
+        buyButton.addTarget(self, action: #selector(buttonTappedBuy(_:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            bottomView.topAnchor.constraint(greaterThanOrEqualTo: stackViewSML.bottomAnchor, constant: 16),
-            bottomView.heightAnchor.constraint(equalToConstant: 121),
-            bottomView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            bottomView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-          
-            
+            buyButton.topAnchor.constraint(greaterThanOrEqualTo: stackViewSML.bottomAnchor, constant: 64),
             buyButton.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            buyButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30),
-            buyButton.heightAnchor.constraint(equalToConstant: 55),
-            buyButton.widthAnchor.constraint(equalToConstant: 250)
+            buyButton.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor, constant: -30),
+            buyButton.heightAnchor.constraint(equalToConstant: 62),
+            buyButton.widthAnchor.constraint(equalToConstant: 214),
         ])
+    }
+    @objc func buttonTappedBuy(_ sender: UIButton) {
+       let destVC   = OrderVC()
+        
+        destVC.modalTransitionStyle = .coverVertical
+        destVC.modalPresentationStyle = .fullScreen
+        present(destVC, animated: true)
     }
 
     
     func configurePrice() {
-        bottomView.addSubview(stackViewPrice)
+        scrollView.addSubview(stackViewPrice)
         stackViewPrice.addArrangedSubview(priceText)
         stackViewPrice.addArrangedSubview(priceInt)
         
@@ -425,7 +416,8 @@ class DetailVC: UIViewController {
         
         NSLayoutConstraint.activate([
             stackViewPrice.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            stackViewPrice.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30)
+            stackViewPrice.bottomAnchor.constraint(equalTo: buyButton.bottomAnchor),
+            stackViewPrice.topAnchor.constraint(equalTo: buyButton.topAnchor)
         ])
     }
 }

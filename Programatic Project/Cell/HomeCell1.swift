@@ -39,21 +39,23 @@ class HomeCell1: UICollectionViewCell {
     }
     
     
+    
     private func configureMainView() {
         addSubview(MainView)
-        
-       MainView.backgroundColor = .systemBackground
-        
+
+        MainView.backgroundColor = .systemBackground
+
+
         NSLayoutConstraint.activate([
             MainView.topAnchor.constraint(equalTo: topAnchor),
             MainView.centerXAnchor.constraint(equalTo: centerXAnchor),
             MainView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
+
             MainView.widthAnchor.constraint(equalToConstant: 315),
             MainView.heightAnchor.constraint(equalToConstant: 300)
-         
         ])
     }
+
     
     
     private func configureBlackView() {
@@ -153,12 +155,8 @@ class HomeCell1: UICollectionViewCell {
             var config = UIButton.Configuration.plain()
             config.image = scaledImage
            
-            
             filterButton.configuration = config
         }
-
-
-
 
         NSLayoutConstraint.activate([
             searchBarTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -165),
@@ -210,11 +208,4 @@ class HomeCell1: UICollectionViewCell {
         ])
     }
 }
-extension UIImage {
-    func resized(to newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
-        defer { UIGraphicsEndImageContext() }
-        draw(in: CGRect(origin: .zero, size: newSize))
-        return UIGraphicsGetImageFromCurrentImageContext() ?? self
-    }
-}
+

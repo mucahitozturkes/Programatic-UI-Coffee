@@ -34,9 +34,6 @@ class EntryVC: UIViewController {
     }
 
 
-
-
-
     func configureBackgroundView() {
         view.addSubview(imageBackground)
         imageBackground.frame = view.bounds

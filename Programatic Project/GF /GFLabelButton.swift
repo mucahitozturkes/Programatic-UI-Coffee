@@ -31,3 +31,22 @@ class GFLabelButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
+
+class ScaledAspectFitButton: GFLabelButton {
+    private let imageScale: CGFloat = 0.8
+
+    override func layoutSubviews() {
+           super.layoutSubviews()
+
+           if let imageView = imageView {
+               var newFrame = imageView.frame
+               newFrame.size.width *= imageScale
+               newFrame.size.height *= imageScale
+               imageView.frame = newFrame
+
+               imageView.frame.origin.x = 13
+               imageView.frame.origin.y = (bounds.height - newFrame.height) / 2.0
+           }
+       }
+    }
+

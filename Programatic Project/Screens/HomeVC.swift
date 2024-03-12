@@ -116,6 +116,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch pageData[indexPath.section] {
         case .headers(let header):
@@ -137,6 +138,9 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
     
     }
+    
+    
+    
 
 
 }
