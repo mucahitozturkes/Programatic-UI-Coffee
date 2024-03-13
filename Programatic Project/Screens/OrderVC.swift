@@ -7,11 +7,18 @@
 
 import UIKit
 
+enum CellType {
+        case delivery
+        case list
+        case payment
+        case order
+    }
 
 class OrderVC: UIViewController {
     
     let tableView = UITableView()
-
+    let cellTypes: [CellType] = [.delivery, .list, .payment, .order]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -24,10 +31,10 @@ class OrderVC: UIViewController {
         tableView.delegate          = self
         tableView.dataSource        = self
         
-        tableView.register(PickupCell.self, forCellReuseIdentifier: PickupCell.reuseID)
-        tableView.register(OrderCell.self, forCellReuseIdentifier: OrderCell.reuseID)
+        tableView.register(DeliveryCell.self, forCellReuseIdentifier: DeliveryCell.reuseID)
+        tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.reuseID)
         tableView.register(PaymentCell.self, forCellReuseIdentifier: PaymentCell.reuseID)
-        tableView.register(FooterCell.self, forCellReuseIdentifier: FooterCell.reuseID)
+        tableView.register(OrderCell.self, forCellReuseIdentifier: OrderCell.reuseID)
        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
@@ -37,7 +44,7 @@ class OrderVC: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)  // Align bottom with the bottom of the superview
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -52,53 +59,65 @@ class OrderVC: UIViewController {
 extension OrderVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return cellTypes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: PickupCell.reuseID, for: indexPath) as! PickupCell
+        let cellType = cellTypes[indexPath.row]
+        
+        switch cellType {
+        case .delivery:
+            let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryCell.reuseID, for: indexPath) as! DeliveryCell
             cell.selectionStyle = .none
+            //cell.backgroundColor = .red
+       
             return cell
-        } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: OrderCell.reuseID, for: indexPath) as! OrderCell
+        case .list:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.reuseID, for: indexPath) as! ListCell
             cell.selectionStyle = .none
+            //cell.backgroundColor = .yellow
             return cell
-        } else if indexPath.row == 2 {
+        case .payment:
             let cell = tableView.dequeueReusableCell(withIdentifier: PaymentCell.reuseID, for: indexPath) as! PaymentCell
             cell.selectionStyle = .none
+            //cell.backgroundColor = .green
             return cell
-        } else if indexPath.row == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: FooterCell.reuseID, for: indexPath) as! FooterCell
+        case .order:
+            let cell = tableView.dequeueReusableCell(withIdentifier: OrderCell.reuseID, for: indexPath) as! OrderCell
             cell.selectionStyle = .none
+            //cell.backgroundColor = .blue
             return cell
         }
-        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        let cellType = cellTypes[indexPath.row]
+        
+        switch cellType {
+        case .delivery:
             return 290
-        } else if indexPath.row == 1 {
+        case .list:
             return 54
-        } else if indexPath.row == 2 {
-            return 0
-        } else if indexPath.row == 3 {
-            return 425
+        case .payment:
+            return 260
+        case .order:
+            return 181
         }
-        return 0
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let spacingView = UIView()
-        spacingView.backgroundColor = .clear
-        return spacingView
-    }
+   
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-       
-           return 0
-       }
+        switch section {
+        case 0, 1, 2:
+            return 0
+        case 3:
+            return 30
+        default:
+            return 0
+        }
+    }
+
 }
 
 

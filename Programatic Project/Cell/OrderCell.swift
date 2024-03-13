@@ -1,126 +1,132 @@
 //
-//  OrderCell.swift
+//  FooterCell.swift
 //  Programatic Project
 //
-//  Created by mücahit öztürk on 11.03.2024.
+//  Created by mücahit öztürk on 12.03.2024.
 //
 
 import UIKit
 
-
-
 class OrderCell: UITableViewCell {
-
-    static let reuseID = "OrderCell"
-
-    let imageShow   = GFImageView(frame: .zero)
-    let titleLabel  = GFTitleLabel(textAlignment: .left, fontSize: 16, textColor: .black)
-    let secondTitle = GFTitleLabel(textAlignment: .left, fontSize: 12, textColor: .lightGray)
-    let plusButton  = GFLabelButton(backgroundColor: .white, title: "", cornerR: 16)
-    let numberLabel = GFTitleLabel(textAlignment: .center, fontSize: 16, textColor: .black)
-    let minusButton = GFLabelButton(backgroundColor: .white, title: "", cornerR: 16)
-    let stackView   = GFStackView(space: 3, distribution: .fillEqually, axis: .horizontal)
-
+    
+    static let reuseID  = "OrderCell"
+    
+    var footerView      = GFView(backgroundColor: .white, cornerRadius: 36, borderWidth: 0)
+    var orderButton     = GFLabelButton(backgroundColor: UIColor(named: "buttoncolor") ?? .red, title: "Order", cornerR: 16)
+    var stackViewMain   = GFStackView(space: 5, distribution: .equalCentering, axis: .horizontal)
+    var stackViewIn     = GFStackView(space: 5, distribution: .equalSpacing, axis: .horizontal)
+    lazy var doteButton      = GFLabelButton()
+    var imageViewPhoto  = GFImageView(frame: .zero)
+    var cashLabel       = GFTitleLabel(textAlignment: .center, fontSize: 12, textColor: .white)
+    var cashLabelPrice  = GFTitleLabel(textAlignment: .center, fontSize: 12, textColor: .black)
+    var stackViewCash   = GFStackView(space: 0, distribution: .fillProportionally, axis: .horizontal)
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureImage()
-        configureTitleLabel()
-        configureSecondTitle()
-        configureButtons()
+        configureFooter()
+        configureOrderButton()
+        configureStackViews()
+        contentView.isHidden = true
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+       
     }
-
-    private func configureImage() {
-        addSubview(imageShow)
-
-        imageShow.image = UIImage(named: "coffe1")
-        imageShow.layer.cornerRadius = 5
-        imageShow.translatesAutoresizingMaskIntoConstraints = false
-
+    
+    func configureFooter() {
+        addSubview(footerView)
+        
+        footerView.layer.shadowColor = UIColor.lightGray.cgColor
+        footerView.layer.shadowOpacity = 0.2
+        footerView.layer.shadowOffset = CGSize(width: 0, height: -8)
+        footerView.layer.shadowRadius = 8
+        footerView.layer.masksToBounds = false
+        
         NSLayoutConstraint.activate([
-            imageShow.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-            imageShow.centerYAnchor.constraint(equalTo: centerYAnchor),
-            imageShow.heightAnchor.constraint(equalToConstant: 54),
-            imageShow.widthAnchor.constraint(equalToConstant: 54)
+            footerView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            footerView.heightAnchor.constraint(equalToConstant: 161),
+            footerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            footerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+          
         ])
     }
-
-    private func configureTitleLabel() {
-        addSubview(titleLabel)
-
-        titleLabel.text = "Cappucino"
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
+    
+    
+    func configureOrderButton() {
+        footerView.addSubview(orderButton)
+        
+        orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: imageShow.trailingAnchor, constant: 16),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7.5),
+            orderButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30),
+            orderButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            orderButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            orderButton.heightAnchor.constraint(equalToConstant: 62)
+            
         ])
     }
-
-    private func configureSecondTitle() {
-        addSubview(secondTitle)
-
-        secondTitle.text    = "with Chocolate"
-        secondTitle.font    =  UIFont.systemFont(ofSize: 12, weight: .light)
+    
+    @objc func orderButtonTapped() {
+        print("ordered")
+    }
+    
+    func configureStackViews() {
+        stackViewCash.addArrangedSubview(cashLabel)
+        stackViewCash.addArrangedSubview(cashLabelPrice)
+        stackViewCash.backgroundColor = UIColor(named: "secondTitle")
+        stackViewCash.layer.cornerRadius = 13
+        cashLabel.text = "Cash"
+        cashLabel.backgroundColor = UIColor(named: "titleCell")
+        cashLabel.clipsToBounds = true
+        cashLabel.layer.cornerRadius = 13
+        cashLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        
+        cashLabelPrice.text = "$ 5.53"
       
-
+        cashLabelPrice.clipsToBounds = true
+        cashLabelPrice.layer.cornerRadius = 13
+        cashLabelPrice.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        
+        stackViewIn.addArrangedSubview(imageViewPhoto)
+        stackViewIn.addArrangedSubview(stackViewCash)
+        
+        
+        stackViewMain.addArrangedSubview(stackViewIn)
+        stackViewMain.addArrangedSubview(doteButton)
+        
+       
+        imageViewPhoto.image = UIImage(named: "cash")
+        
+        doteButton.setImage(UIImage(systemName: "ellipsis.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 24)), for: .normal)
+      
+        
+        doteButton.layer.cornerRadius = doteButton.frame.size.width / 2
+        doteButton.clipsToBounds = true
+        doteButton.tintColor = UIColor(named: "dot")
+        
+        footerView.addSubview(stackViewMain)
+        
+      
         NSLayoutConstraint.activate([
-            secondTitle.leadingAnchor.constraint(equalTo: imageShow.trailingAnchor, constant: 16),
-            secondTitle.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            stackViewMain.topAnchor.constraint(equalTo: footerView.topAnchor, constant: 16),
+            stackViewMain.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 30),
+            stackViewMain.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -30),
+            
+            imageViewPhoto.heightAnchor.constraint(equalToConstant: 25),
+            imageViewPhoto.widthAnchor.constraint(equalToConstant: 25),
+            
+            cashLabelPrice.widthAnchor.constraint(equalToConstant: 60),
+            cashLabel.widthAnchor.constraint(equalToConstant: 50),
+            
+            
         ])
     }
-
-    private func configureButtons() {
-        addSubview(stackView)
-        stackView.addArrangedSubview(minusButton)
-        stackView.addArrangedSubview(numberLabel)
-        stackView.addArrangedSubview(plusButton)
-
-        numberLabel.text = "1"
-        numberLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-
-        plusButton.layer.borderWidth = 1
-        plusButton.layer.borderColor = UIColor(named: "line")?.cgColor
-        plusButton.setImage(UIImage(systemName: "plus")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 12)), for: .normal)
-        plusButton.tintColor = UIColor.black
-        plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
-
-        minusButton.setImage(UIImage(systemName: "minus")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 12)), for: .normal)
-        minusButton.layer.borderWidth = 1
-        minusButton.layer.borderColor = UIColor(named: "line")?.cgColor
-        minusButton.tintColor = UIColor.black
-        minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
-
-        let scale = CGFloat(30)
-
-        NSLayoutConstraint.activate([
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-
-            minusButton.heightAnchor.constraint(equalToConstant: scale),
-            minusButton.widthAnchor.constraint(equalToConstant: scale),
-            plusButton.widthAnchor.constraint(equalToConstant: scale),
-            plusButton.heightAnchor.constraint(equalToConstant: scale),
-        ])
-    }
-
-    @objc private func plusButtonTapped() {
-        guard let currentNumber = Int(numberLabel.text ?? "0") else { return }
-        numberLabel.text = "\(currentNumber + 1)"
-    }
-
-    @objc private func minusButtonTapped() {
-        guard let currentNumber = Int(numberLabel.text ?? "0"), currentNumber > 0 else { return }
-        numberLabel.text = "\(currentNumber - 1)"
-    }
-
 }
-

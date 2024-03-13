@@ -7,9 +7,9 @@
 
 import UIKit
 
-class PickupCell: UITableViewCell, CustomSegmentedControlDelegate {
+class DeliveryCell: UITableViewCell {
 
-    static let reuseID = "PickupCell"
+    static let reuseID = "DeliveryCell"
     
     let backButton          = GFLabelButton(backgroundColor: .white, title: "", cornerR: 5)
     let titleLabel          = GFTitleLabel(textAlignment: .center, fontSize: 18, textColor: .black)
@@ -35,7 +35,7 @@ class PickupCell: UITableViewCell, CustomSegmentedControlDelegate {
         configureEditButton()
         configureAddButton()
         configureSpacetor()
-        
+        contentView.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -87,29 +87,6 @@ class PickupCell: UITableViewCell, CustomSegmentedControlDelegate {
         ])
     }
     
-    
-    func configureSegment() {
-        customSegmentedControl = CustomSegmentedControl()
-        customSegmentedControl.delegate = self
-        
-        addSubview(customSegmentedControl)
-        
-        customSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            customSegmentedControl.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25),
-            customSegmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            customSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            customSegmentedControl.heightAnchor.constraint(equalToConstant: 48),
-            customSegmentedControl.widthAnchor.constraint(greaterThanOrEqualToConstant: 315),
-           
-        ])
-    }
-    
-    
-    func didSelectSegment(_ segment: Int) {
-           print("Selected segment: \(segment)")
-       }
     
     func configureBodyTitle() {
         addSubview(bodyTitle)
@@ -208,5 +185,30 @@ class PickupCell: UITableViewCell, CustomSegmentedControlDelegate {
             spacetor.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
+}
 
+extension DeliveryCell: CustomSegmentedControlDelegate {
+    
+    func configureSegment() {
+        customSegmentedControl = CustomSegmentedControl()
+        customSegmentedControl.delegate = self
+        
+        addSubview(customSegmentedControl)
+        
+        customSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            customSegmentedControl.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25),
+            customSegmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            customSegmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            customSegmentedControl.heightAnchor.constraint(equalToConstant: 48),
+            customSegmentedControl.widthAnchor.constraint(greaterThanOrEqualToConstant: 315),
+           
+        ])
+    }
+    
+    
+    func didSelectSegment(_ segment: Int) {
+           print("Selected segment: \(segment)")
+       }
 }

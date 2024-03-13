@@ -11,11 +11,11 @@
 		0890C6C62B9E143A00CC1392 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890C6C52B9E143A00CC1392 /* Helper.swift */; };
 		08D5B9C72B9EFE760067153D /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9C62B9EFE760067153D /* OrderVC.swift */; };
 		08D5B9C92B9F3A3A0067153D /* GFSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9C82B9F3A3A0067153D /* GFSegmentControl.swift */; };
-		08D5B9CB2B9F54A10067153D /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9CA2B9F54A10067153D /* OrderCell.swift */; };
+		08D5B9CB2B9F54A10067153D /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9CA2B9F54A10067153D /* ListCell.swift */; };
 		08D5B9CD2BA044460067153D /* PaymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9CC2BA044460067153D /* PaymentCell.swift */; };
 		08D5B9CF2BA07BDA0067153D /* GFScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9CE2BA07BDA0067153D /* GFScrollView.swift */; };
-		08D5B9D12BA07CCB0067153D /* PickupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9D02BA07CCB0067153D /* PickupCell.swift */; };
-		08D5B9D32BA09DD00067153D /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9D22BA09DD00067153D /* FooterCell.swift */; };
+		08D5B9D12BA07CCB0067153D /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9D02BA07CCB0067153D /* DeliveryCell.swift */; };
+		08D5B9D32BA09DD00067153D /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D5B9D22BA09DD00067153D /* OrderCell.swift */; };
 		08EC99522B8F86090082BEF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99512B8F86090082BEF5 /* AppDelegate.swift */; };
 		08EC99542B8F86090082BEF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC99532B8F86090082BEF5 /* SceneDelegate.swift */; };
 		08EC995B2B8F860A0082BEF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08EC995A2B8F860A0082BEF5 /* Assets.xcassets */; };
@@ -44,11 +44,11 @@
 		0890C6C52B9E143A00CC1392 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		08D5B9C62B9EFE760067153D /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
 		08D5B9C82B9F3A3A0067153D /* GFSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSegmentControl.swift; sourceTree = "<group>"; };
-		08D5B9CA2B9F54A10067153D /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		08D5B9CA2B9F54A10067153D /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		08D5B9CC2BA044460067153D /* PaymentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCell.swift; sourceTree = "<group>"; };
 		08D5B9CE2BA07BDA0067153D /* GFScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFScrollView.swift; sourceTree = "<group>"; };
-		08D5B9D02BA07CCB0067153D /* PickupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupCell.swift; sourceTree = "<group>"; };
-		08D5B9D22BA09DD00067153D /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
+		08D5B9D02BA07CCB0067153D /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
+		08D5B9D22BA09DD00067153D /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		08EC994E2B8F86090082BEF5 /* Programatic Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Programatic Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08EC99512B8F86090082BEF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08EC99532B8F86090082BEF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,10 +123,10 @@
 				08EC99672B8F98080082BEF5 /* HomeCell1.swift */,
 				08EC998C2B946F960082BEF5 /* HomeCell2.swift */,
 				08EC99972B95C54C0082BEF5 /* HomeCell3.swift */,
-				08D5B9D02BA07CCB0067153D /* PickupCell.swift */,
-				08D5B9CA2B9F54A10067153D /* OrderCell.swift */,
+				08D5B9D02BA07CCB0067153D /* DeliveryCell.swift */,
+				08D5B9CA2B9F54A10067153D /* ListCell.swift */,
 				08D5B9CC2BA044460067153D /* PaymentCell.swift */,
-				08D5B9D22BA09DD00067153D /* FooterCell.swift */,
+				08D5B9D22BA09DD00067153D /* OrderCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08D5B9D12BA07CCB0067153D /* PickupCell.swift in Sources */,
+				08D5B9D12BA07CCB0067153D /* DeliveryCell.swift in Sources */,
 				08EC99942B94BBC60082BEF5 /* GFTextField.swift in Sources */,
 				08EC99852B921A7D0082BEF5 /* SettingsVC.swift in Sources */,
 				08EC99662B8F87250082BEF5 /* HomeVC.swift in Sources */,
@@ -291,7 +291,7 @@
 				08EC99792B90B4EE0082BEF5 /* GFError.swift in Sources */,
 				08EC99522B8F86090082BEF5 /* AppDelegate.swift in Sources */,
 				0890C6C62B9E143A00CC1392 /* Helper.swift in Sources */,
-				08D5B9D32BA09DD00067153D /* FooterCell.swift in Sources */,
+				08D5B9D32BA09DD00067153D /* OrderCell.swift in Sources */,
 				08EC99682B8F98080082BEF5 /* HomeCell1.swift in Sources */,
 				08D5B9CD2BA044460067153D /* PaymentCell.swift in Sources */,
 				08EC99CB2B9869E90082BEF5 /* MockData.swift in Sources */,
@@ -307,7 +307,7 @@
 				08EC99892B925F5D0082BEF5 /* GFLabelButton.swift in Sources */,
 				08D5B9C72B9EFE760067153D /* OrderVC.swift in Sources */,
 				0890C6C42B9DBD4E00CC1392 /* GFStackView.swift in Sources */,
-				08D5B9CB2B9F54A10067153D /* OrderCell.swift in Sources */,
+				08D5B9CB2B9F54A10067153D /* ListCell.swift in Sources */,
 				08EC998D2B946F960082BEF5 /* HomeCell2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

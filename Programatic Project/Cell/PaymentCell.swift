@@ -41,7 +41,7 @@ class PaymentCell: UITableViewCell {
         configureDeliveryLabel()
         configureSpacetor2()
         configureTotalLabel()
-       
+        contentView.isHidden = true       
     }
     
     
@@ -64,7 +64,7 @@ class PaymentCell: UITableViewCell {
         NSLayoutConstraint.activate([
             line.leadingAnchor.constraint(equalTo: leadingAnchor),
             line.trailingAnchor.constraint(equalTo: trailingAnchor),
-            line.topAnchor.constraint(equalTo: bottomAnchor, constant: 20),
+            line.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             line.heightAnchor.constraint(equalToConstant: 4)
         ])
     }
@@ -77,15 +77,34 @@ class PaymentCell: UITableViewCell {
         discountButton.layer.borderColor = UIColor(named: "line")?.cgColor
         discountButton.setTitleColor(.black, for: .normal)
         discountButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+   
+        let rightArrowImageView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        rightArrowImageView.tintColor = UIColor(named: "searchbar")
+        rightArrowImageView.translatesAutoresizingMaskIntoConstraints = false
+        discountButton.addSubview(rightArrowImageView)
+        
+        let leftImageView = UIImageView(image: UIImage(named: "percent"))
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        discountButton.addSubview(leftImageView)
+        
+        
         
         NSLayoutConstraint.activate([
             discountButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             discountButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             discountButton.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 20),
-            discountButton.heightAnchor.constraint(equalToConstant: 56)
+            discountButton.heightAnchor.constraint(equalToConstant: 56),
+            
+            rightArrowImageView.centerYAnchor.constraint(equalTo: discountButton.centerYAnchor),
+            rightArrowImageView.trailingAnchor.constraint(equalTo: discountButton.trailingAnchor, constant: -16), 
+            
+            leftImageView.centerYAnchor.constraint(equalTo: discountButton.centerYAnchor),
+            leftImageView.leadingAnchor.constraint(equalTo: discountButton.leadingAnchor, constant: 16),
+            leftImageView.widthAnchor.constraint(equalToConstant: 20),
+            leftImageView.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
-    
+
     
     private func configurepaymentLabel() {
         addSubview(paymentLabel)
@@ -193,8 +212,4 @@ class PaymentCell: UITableViewCell {
             stackViewTotal.trailingAnchor.constraint(equalTo: spacetor2.trailingAnchor)
         ])
     }
-    
-    
-    
-
 }
