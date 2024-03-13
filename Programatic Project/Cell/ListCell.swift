@@ -20,7 +20,9 @@ class ListCell: UITableViewCell {
     let numberLabel = GFTitleLabel(textAlignment: .center, fontSize: 16, textColor: .black)
     let minusButton = GFLabelButton(backgroundColor: .white, title: "", cornerR: 16)
     let stackView   = GFStackView(space: 3, distribution: .fillEqually, axis: .horizontal)
-
+    
+    var product: productList?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureImage()

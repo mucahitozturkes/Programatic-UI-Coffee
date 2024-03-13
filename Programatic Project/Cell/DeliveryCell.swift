@@ -26,7 +26,6 @@ class DeliveryCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureBackButton()
         configureTitle()
         configureSegment()
         configureBodyTitle()
@@ -49,32 +48,6 @@ class DeliveryCell: UITableViewCell {
     }
     
     
-    func configureBackButton() {
-        addSubview(backButton)
-        
-        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        backButton.tintColor        = .black
-        
-        backButton.layer.shadowColor = UIColor.lightGray.cgColor
-        backButton.layer.shadowOpacity = 0.1
-        backButton.layer.shadowOffset = CGSize(width: 0, height: 2)
-        backButton.layer.shadowRadius = 3
-        backButton.layer.masksToBounds = false
-        
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            backButton.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            backButton.heightAnchor.constraint(equalToConstant: 32),
-            backButton.widthAnchor.constraint(equalToConstant: 32)
-        ])
-    }
-    @objc func backButtonPressed() {
-       print("done")
-    }
-
-    
     func configureTitle() {
         addSubview(titleLabel)
       
@@ -82,7 +55,7 @@ class DeliveryCell: UITableViewCell {
         titleLabel.font         = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
@@ -140,18 +113,34 @@ class DeliveryCell: UITableViewCell {
         editButton.layer.borderWidth = 1
         editButton.layer.borderColor = UIColor(named: "stroke")?.cgColor
         editButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        editButton.setImage(UIImage(named: "edit"), for: .normal)
-   
-       
+        
+       let rightImageView = UIImageView(image: UIImage(named: "edit"))
+        rightImageView.translatesAutoresizingMaskIntoConstraints = false
+        editButton.addSubview(rightImageView)
+        
+        editButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.right
+        editButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+        
+        editButton.addTarget(self, action: #selector(editButtonPressed), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             editButton.topAnchor.constraint(equalTo: thirdTitle.bottomAnchor, constant: 16),
             editButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             editButton.widthAnchor.constraint(equalToConstant: 120),
-            editButton.heightAnchor.constraint(equalToConstant: 27)
+            editButton.heightAnchor.constraint(equalToConstant: 27),
+            
+            rightImageView.leadingAnchor.constraint(equalTo: editButton.leadingAnchor, constant: 12),
+            rightImageView.centerYAnchor.constraint(equalTo: editButton.centerYAnchor),
+            rightImageView.widthAnchor.constraint(equalToConstant: 15),
+            rightImageView.heightAnchor.constraint(equalToConstant: 15),
+            
         ])
+      
     }
-
+    @objc func editButtonPressed() {
+        print("edit")
+    }
+    
     
     func configureAddButton() {
         addSubview(addButton)
@@ -160,18 +149,33 @@ class DeliveryCell: UITableViewCell {
         addButton.layer.borderWidth = 1
         addButton.layer.borderColor = UIColor(named: "stroke")?.cgColor
         addButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        addButton.setImage(UIImage(named: "addb"), for: .normal)
+       
      
-      
+        let rightImageView = UIImageView(image: UIImage(named: "addb"))
+         rightImageView.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addSubview(rightImageView)
+         
+        addButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.right
+        addButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+        
+        addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: thirdTitle.bottomAnchor, constant: 16),
             addButton.leadingAnchor.constraint(equalTo: editButton.trailingAnchor, constant: 8),
             addButton.widthAnchor.constraint(equalToConstant: 101),
-            addButton.heightAnchor.constraint(equalToConstant: 27)
+            addButton.heightAnchor.constraint(equalToConstant: 27),
+            
+            rightImageView.leadingAnchor.constraint(equalTo: addButton.leadingAnchor, constant: 12),
+            rightImageView.centerYAnchor.constraint(equalTo: addButton.centerYAnchor),
+            rightImageView.widthAnchor.constraint(equalToConstant: 15),
+            rightImageView.heightAnchor.constraint(equalToConstant: 15),
+            
         ])
     }
-    
+    @objc func addButtonPressed() {
+        print("add")
+    }
     
     func configureSpacetor() {
         addSubview(spacetor)

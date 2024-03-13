@@ -7,12 +7,12 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
+class FavoriteVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .yellow
     }
     
 

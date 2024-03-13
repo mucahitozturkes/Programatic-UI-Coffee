@@ -87,7 +87,7 @@ class PaymentCell: UITableViewCell {
         leftImageView.translatesAutoresizingMaskIntoConstraints = false
         discountButton.addSubview(leftImageView)
         
-        
+        discountButton.addTarget(self, action: #selector(discountButtonPressed), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             discountButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
@@ -104,7 +104,9 @@ class PaymentCell: UITableViewCell {
             leftImageView.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
-
+    @objc func discountButtonPressed() {
+        print("Discount")
+    }
     
     private func configurepaymentLabel() {
         addSubview(paymentLabel)

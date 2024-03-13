@@ -4,7 +4,6 @@
 //
 //  Created by mücahit öztürk on 8.03.2024.
 //
-
 import UIKit
 
 class DetailVC: UIViewController {
@@ -15,7 +14,7 @@ class DetailVC: UIViewController {
     let heartButton         = GFLabelButton(backgroundColor: .white, title: "", cornerR: 5)
     let imageView           = GFImageView(frame: .zero)
     let bodyTitle           = GFTitleLabel(textAlignment: .left, fontSize: 20, textColor: .black)
-    let secontTitle         = GFTitleLabel(textAlignment: .left, fontSize: 12, textColor: .darkGray)
+    let secondTitle         = GFTitleLabel(textAlignment: .left, fontSize: 12, textColor: .darkGray)
     let starImageView       = GFImageView(frame: .zero)
     let votes               = GFTitleLabel(textAlignment: .center, fontSize: 18, textColor: .black)
     let votesNumbers        = GFTitleLabel(textAlignment: .center, fontSize: 14, textColor: .darkGray)
@@ -126,6 +125,8 @@ class DetailVC: UIViewController {
         
         heartButton.setImage(UIImage(named: "heart"), for: .normal)
         
+        heartButton.addTarget(self, action: #selector(addFavorite), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             heartButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
             heartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
@@ -134,7 +135,9 @@ class DetailVC: UIViewController {
             
         ])
     }
-    
+    @objc func addFavorite() {
+        print("Favorited")
+    }
     
     func configureImageView() {
         scrollView.addSubview(imageView)
@@ -144,7 +147,7 @@ class DetailVC: UIViewController {
             
         
 
-        let aspectRatio: CGFloat = 4 / 3
+        let aspectRatio: CGFloat = 1
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(lessThanOrEqualTo: titleLabel.bottomAnchor, constant: 25),
@@ -170,14 +173,14 @@ class DetailVC: UIViewController {
     
     
     func configureSecondTitle() {
-        scrollView.addSubview(secontTitle)
+        scrollView.addSubview(secondTitle)
         
-        secontTitle.text        = product?.secondaryTitle
-        secontTitle.font        = UIFont.systemFont(ofSize: 12, weight: .light)
+        secondTitle.text        = product?.secondaryTitle
+        secondTitle.font        = UIFont.systemFont(ofSize: 12, weight: .light)
         
         NSLayoutConstraint.activate([
-            secontTitle.topAnchor.constraint(equalTo: bodyTitle.bottomAnchor, constant: 8),
-            secontTitle.leadingAnchor.constraint(equalTo: bodyTitle.leadingAnchor)
+            secondTitle.topAnchor.constraint(equalTo: bodyTitle.bottomAnchor, constant: 8),
+            secondTitle.leadingAnchor.constraint(equalTo: bodyTitle.leadingAnchor)
         ])
     }
     
@@ -189,8 +192,8 @@ class DetailVC: UIViewController {
         starImageView.tintColor = UIColor(named: "star")
         
         NSLayoutConstraint.activate([
-            starImageView.topAnchor.constraint(equalTo: secontTitle.bottomAnchor, constant: 16),
-            starImageView.leadingAnchor.constraint(equalTo: secontTitle.leadingAnchor),
+            starImageView.topAnchor.constraint(equalTo: secondTitle.bottomAnchor, constant: 16),
+            starImageView.leadingAnchor.constraint(equalTo: secondTitle.leadingAnchor),
             starImageView.heightAnchor.constraint(equalToConstant: 20),
             starImageView.widthAnchor.constraint(equalToConstant: 20)
         ])
@@ -206,7 +209,7 @@ class DetailVC: UIViewController {
            }
         
         NSLayoutConstraint.activate([
-            votes.topAnchor.constraint(equalTo: secontTitle.bottomAnchor, constant: 16),
+            votes.topAnchor.constraint(equalTo: secondTitle.bottomAnchor, constant: 16),
             votes.leadingAnchor.constraint(equalTo: starImageView.trailingAnchor, constant: 3)
         ])
     }
@@ -219,7 +222,7 @@ class DetailVC: UIViewController {
         votesNumbers.font       = UIFont.systemFont(ofSize: 12, weight: .light)
         
         NSLayoutConstraint.activate([
-            votesNumbers.topAnchor.constraint(equalTo: secontTitle.bottomAnchor, constant: 20),
+            votesNumbers.topAnchor.constraint(equalTo: secondTitle.bottomAnchor, constant: 20),
             votesNumbers.leadingAnchor.constraint(equalTo: votes.trailingAnchor, constant: 3)
         ])
     }
@@ -393,14 +396,15 @@ class DetailVC: UIViewController {
         ])
     }
     @objc func buttonTappedBuy(_ sender: UIButton) {
-       let destVC   = OrderVC()
-        
-        destVC.modalTransitionStyle = .coverVertical
-        destVC.modalPresentationStyle = .fullScreen
-        present(destVC, animated: true)
+        let orderVC = OrderVC()
+        orderVC.modalTransitionStyle = .coverVertical
+        orderVC.modalPresentationStyle = .automatic
+       
+        present(orderVC, animated: true)
     }
 
-    
+
+
     func configurePrice() {
         scrollView.addSubview(stackViewPrice)
         stackViewPrice.addArrangedSubview(priceText)

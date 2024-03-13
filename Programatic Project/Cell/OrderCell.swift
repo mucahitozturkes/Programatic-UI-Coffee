@@ -106,7 +106,7 @@ class OrderCell: UITableViewCell {
         imageViewPhoto.image = UIImage(named: "cash")
         
         doteButton.setImage(UIImage(systemName: "ellipsis.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 24)), for: .normal)
-      
+        doteButton.addTarget(self, action: #selector(doteButonPressed), for: .touchUpInside)
         
         doteButton.layer.cornerRadius = doteButton.frame.size.width / 2
         doteButton.clipsToBounds = true
@@ -128,5 +128,9 @@ class OrderCell: UITableViewCell {
             
             
         ])
+    }
+    
+    @objc func doteButonPressed() {
+        print("More Info Request")
     }
 }

@@ -128,7 +128,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
             let selectedProduct = items[indexPath.row]
             let destVC = DetailVC()
             destVC.product  = selectedProduct
-            
+          
             destVC.modalTransitionStyle = .coverVertical
             destVC.modalPresentationStyle = .fullScreen
             present(destVC, animated: true)
@@ -139,8 +139,4 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     }
     
-    
-    
-
-
 }
