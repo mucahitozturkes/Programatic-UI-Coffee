@@ -1,6 +1,6 @@
-![IMG_2559](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/5310a8b7-e4d6-4309-a1bf-2c8365bf14ef)
 
-![IMG_2555](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/94c9c82a-6109-4f7d-b73f-a4a2fe88eb94)
-![IMG_2562](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/860925b4-4387-4337-b6b3-fc309f801f9c)
-![IMG_2561](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/6a8d1081-ef26-43a2-a9b3-c3775b4f3a12)
-![IMG_2563](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/404f14c2-bc8c-46f4-99d2-d8303621b8ad)
+![Screenshot 2024-03-22 at 15 01 19](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/6cb348de-cf84-43c7-a2ae-b22f76249006)
+![Screenshot 2024-03-22 at 15 01 42](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/80cacb0f-1d8b-4dba-88e0-40bc71cf0048)
+![Screenshot 2024-03-22 at 15 01 36](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/9c64e2c1-ff47-41fb-b903-5d1a0e3568be)
+![Screenshot 2024-03-22 at 15 01 52](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/1079ca54-40e4-4c1e-9f83-927ad3eed3df)
+![Screenshot 2024-03-22 at 15 01 22](https://github.com/mucahitozturkes/Programatic-UI-Coffee/assets/138803167/49604d20-702b-47c3-aff3-3b52521ef43c)
